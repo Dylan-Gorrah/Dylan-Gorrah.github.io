@@ -14,6 +14,7 @@ Load order (bottom of `index.html`). **Keep it this way:**
 6. `stack.js`: [[Stack]] chips. Also publishes `Site.renderChips` for views.js.
 7. `views.js`: [[View System]]
 8. `projects.js`: [[Projects]] accordion
+8b. `lead.js`: the phone intro "…" expander, see [[Profile Card]]
 9. `cv-button.js`: [[CV Button]]. Listens for the `site:view` event.
 10. `profile-pop.js`: [[Profile Popup]] (phone avatar → summary card)
 11. `fullscreen.js`: full-screen toggle, see [[Fullscreen & App Mode]]

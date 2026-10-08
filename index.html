@@ -139,7 +139,8 @@
           <h1><span class="l" style="--i:0"><span>Dylan</span></span> <span class="l" style="--i:1"><span>Gorrah</span></span></h1>
         </div>
         <p class="title">Software Developer <span>/</span> QA &amp; Test Automation</p>
-        <p class="lead">Software developer moving into QA. I write and run test cases, log defects, and automate the checks that repeat. I also build sites for paying clients and tutor Java at IIE Rosebank College.</p>
+        <!-- Intro. Phones show only .lead-short + a "…" button that expands .lead-rest (js/lead.js). Desktop shows it all. -->
+        <p class="lead" id="lead"><span class="lead-short">Software developer moving into QA</span><span class="lead-rest" id="leadRest">. I write and run test cases, log defects, and automate the checks that repeat. I also build sites for paying clients and tutor Java at IIE Rosebank College.</span><button class="lead-more" type="button" aria-expanded="false" aria-controls="leadRest" aria-label="Read more">…</button></p>
         <div class="facts-row"><span>C# &amp; .NET</span><span>React &amp; Next.js</span><span>xUnit &amp; Postman</span></div>
       </div>
       <div class="identity">
@@ -461,6 +462,7 @@
 <script src="js/stack.js"></script>
 <script src="js/views.js"></script>
 <script src="js/projects.js"></script>
+<script src="js/lead.js"></script>
 <script src="js/cv-button.js"></script>
 <script src="js/profile-pop.js"></script>
 <script src="js/fullscreen.js"></script>

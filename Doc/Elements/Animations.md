@@ -16,6 +16,7 @@
 | `sweep` | loading-bar shine on [[Freelance]] browser cards |
 | `grow` | pass-rate bar in [[Tutoring]] |
 | `g1` / `g2` | Hello ↔ Hallo swap in [[Languages]] |
+| `leadIn` | [[Profile Card]] intro text blurring in when "…" expands |
 | `avatarHint` | [[Profile Popup]] avatar's 3 "tap me" pulses |
 | `float` (+ `nudge`) | [[CV Button]] bobbing, arrow hop |
 

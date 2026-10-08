@@ -9,9 +9,16 @@ The big white card on the left of home. It's all plain text in `index.html`, wit
 | Photo | `.photo` | Circle placeholder, swapped for your photo. Hidden on phones, where the [[Profile Popup]] avatar beside the name replaces it |
 | Name | `h1` | "Dylan Gorrah". Each word is in `.l` with `--i` so they slide up one after the other |
 | Title | `.title` | "Software Developer / QA & Test Automation" (copper) |
-| Intro | `.lead` | Short bio paragraph |
+| Intro | `.lead` | Short bio paragraph. On phones it collapses to one line, see below |
 | Pills | `.facts-row` | 3 small tech pills |
 | Footer | `.identity` | Location, diploma, "Graduating Nov 2026" |
+
+## Intro on phones ("…" expander)
+On phones (≤ 680px) the intro shows just **"Software developer moving into QA"** plus a small copper **…** pill. Tapping it smoothly grows the paragraph to the full text (with the site's easing, and the new text blurs in), and the pill becomes **less** to collapse it again. A light haptic tick plays (see [[Haptics]]).
+- **Markup:** `.lead-short` (always shown) + `.lead-rest` (the rest, starting with ". I write…") + `button.lead-more`. Edit the text in those two spans; together they read as one sentence on desktop.
+- **Code:** `js/lead.js` (toggle + height animation), the phone rules at the end of `css/home.css`, and `leadIn` in [[Animations]].
+- Desktop and tablet always show the full text with no button.
+- Short phone screens still hide the intro entirely to make room (see [[Responsive Layout]]).
 
 ## Photo
 **Hover zoom (computers):** on screens with a mouse or trackpad (wider than 680px), hovering the photo makes it grow to **2×** from its top-right corner with the site's easing (`cubic-bezier(.2,.7,.2,1)`), with a copper ring and a deeper shadow, then it shrinks back when the mouse leaves.
