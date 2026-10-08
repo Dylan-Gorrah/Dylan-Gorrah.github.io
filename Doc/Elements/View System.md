@@ -29,7 +29,7 @@ The header is identical in every view. Only the `<h2>` changes, and the `01 / 08
 - Opening [[Stack]] re-renders its chips so they pop in again.
 
 ## Haptics
-On phones: a tap plus a tick when the circle finishes growing (open), one tick per prev/next/swipe, and a tap plus a tick as it shrinks home. See [[Haptics]].
+On phones the circle **spins like a wheel**: ticks come fast while it grows quickly and spread out as it settles, ending with a click exactly when it stops. Prev/next/swipe gets a lighter wheel, and closing winds in faster and faster. See [[Haptics]].
 
 ## Shared view styles (`css/views.css`)
 | Class | Use |
