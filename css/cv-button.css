@@ -1,64 +1,27 @@
-/* cv-button.css: the floating Apple-style "liquid glass" Download CV pill (home only, appears after 5s idle).
-   Hidden by default; js/cv-button.js adds .show (and .lg-refract on Chromium). Docs: Doc/Elements/CV Button.md
-
-   Layers, back to front:
-     .lg-glass   the lens: blurs/bends whatever is behind it + rim lighting (inset shadows)
-     ::after     a soft specular highlight that follows the pointer (--lx / --ly)
-     content     icon bubble + label                                                        */
+/* cv-button.css: the small flat frosted-glass Download CV button (home only, appears after 5s idle).
+   Hidden by default; js/cv-button.js adds .show. Docs: Doc/Elements/CV Button.md
+   It sits in the empty middle of the footer strip (.bottom in css/home.css), so it is sized to fit
+   that strip and never covers the tiles above. */
 .cv-btn{
-  position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:9;
-  display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 24px 0 8px;border-radius:999px;
-  font-weight:600;font-size:.92rem;letter-spacing:-.015em;color:var(--ink);white-space:nowrap;
-  isolation:isolate;--lx:30%;--ly:0%;
-  /* hidden state: sunk a little, shrunk, invisible, not clickable or tabbable */
-  opacity:0;visibility:hidden;translate:-50% 28px;scale:.86;
-  transition:opacity .45s ease,translate .85s cubic-bezier(.2,1.4,.3,1),scale .85s cubic-bezier(.2,1.4,.3,1),visibility 0s .85s;
+  position:fixed;left:50%;bottom:calc(13px + env(safe-area-inset-bottom,0px));z-index:9;
+  display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 11px 0 9px;border-radius:7px;
+  font-weight:600;font-size:.74rem;letter-spacing:-.01em;color:var(--ink);white-space:nowrap;
+  /* frosted glass: a light see-through tint that blurs whatever is behind it. Flat: no rim light or shadow. */
+  background:rgba(255,255,255,.32);border:1px solid rgba(255,255,255,.6);
+  box-shadow:0 0 0 .5px rgba(20,20,19,.12);   /* faint outer hairline so the edge still shows on the light page */
+  -webkit-backdrop-filter:blur(10px) saturate(170%);backdrop-filter:blur(10px) saturate(170%);
+  /* hidden state: sunk a little, invisible, not clickable or tabbable */
+  opacity:0;visibility:hidden;translate:-50% 10px;
+  transition:opacity .35s ease,translate .45s ease,background .2s,border-color .2s,visibility 0s .45s;
 }
-.cv-btn.show{
-  opacity:1;visibility:visible;translate:-50% 0;scale:1;
-  transition:opacity .45s ease,translate .85s cubic-bezier(.2,1.4,.3,1),scale .5s cubic-bezier(.2,1.4,.3,1),visibility 0s;
-  animation:float 6s ease-in-out 1s infinite;
-}
-.cv-btn.show:hover{scale:1.05}
-.cv-btn.show:active{scale:.95;transition-duration:.15s}
+.cv-btn.show{opacity:1;visibility:visible;translate:-50% 0;transition:opacity .35s ease,translate .45s ease,background .2s,border-color .2s,visibility 0s}
+.cv-btn.show:hover{background:rgba(255,255,255,.5);border-color:rgba(20,20,19,.2)}
+.cv-btn.show:active{translate:-50% 1px}
 
-/* ---- the lens ---- */
-.lg-glass{position:absolute;inset:0;z-index:-1;border-radius:inherit;overflow:hidden;pointer-events:none;
-  /* everywhere: frosted. Glass is mostly clear, so the tint is very light. */
-  background:rgba(255,255,255,.16);
-  -webkit-backdrop-filter:blur(6px) saturate(185%) brightness(1.06);backdrop-filter:blur(6px) saturate(185%) brightness(1.06);
-  /* rim light: bright top-left edge, softer bottom-right edge, inner glow, hairline outline, then lift */
-  box-shadow:
-    inset 1.5px 1.5px 0 -.5px rgba(255,255,255,.95),
-    inset -1px -1px 0 -.5px rgba(255,255,255,.7),
-    inset 0 0 8px 1px rgba(255,255,255,.45),
-    inset 0 0 0 .5px rgba(20,20,19,.12),
-    0 8px 24px rgba(24,22,17,.16),
-    0 2px 6px rgba(24,22,17,.10);
-  transition:box-shadow .3s}
-/* Chromium: real refraction. The SVG filter (#lg-cv in index.html) bends the backdrop at the rim. */
-.cv-btn.lg-refract .lg-glass{
-  -webkit-backdrop-filter:url(#lg-cv) blur(1px) saturate(170%) brightness(1.05);backdrop-filter:url(#lg-cv) blur(1px) saturate(170%) brightness(1.05)}
-.cv-btn:hover .lg-glass{box-shadow:
-    inset 1.5px 1.5px 0 -.5px #fff,inset -1px -1px 0 -.5px rgba(255,255,255,.8),inset 0 0 10px 2px rgba(255,255,255,.55),
-    inset 0 0 0 .5px rgba(20,20,19,.12),0 12px 30px rgba(24,22,17,.2),0 3px 8px rgba(24,22,17,.12)}
-
-/* ---- specular highlight that follows the pointer ---- */
-.cv-btn::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
-  background:radial-gradient(110px 56px at var(--lx) var(--ly),rgba(255,255,255,.38),rgba(255,255,255,0) 70%)}
-/* NOTE: no mix-blend-mode here. A blended sibling stops Chrome feeding the backdrop to .lg-glass,
-   which silently kills both the blur and the refraction. */
-
-/* ---- content ---- */
-.cv-ic{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:50%;
-  background:var(--ink);color:var(--pink);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 2px 6px rgba(20,20,19,.25)}
-.cv-ic .ic{width:18px;height:18px}
-.cv-btn.show .cv-ic .ic{animation:nudge 2.4s ease-in-out 1.4s infinite}
-.cv-label{text-shadow:0 1px 0 rgba(255,255,255,.55)}
-
-.lg-defs{position:absolute;width:0;height:0;overflow:hidden}
+.cv-ic{display:grid;place-items:center;color:var(--copper)}
+.cv-ic .ic{width:14px;height:14px}
 
 @media(max-width:680px){
-  .cv-btn{height:48px;padding:0 20px 0 6px;font-size:.85rem;gap:8px;bottom:calc(12px + env(safe-area-inset-bottom,0px))}
-  .cv-ic{width:36px;height:36px}
+  .cv-btn{height:24px;padding:0 9px 0 7px;font-size:.66rem;gap:6px;bottom:calc(11px + env(safe-area-inset-bottom,0px))}
+  .cv-ic .ic{width:12px;height:12px}
 }

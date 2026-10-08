@@ -67,7 +67,7 @@
 
 
 /* ---------- Tablets: the big photo is tappable (js/profile-pop.js) ---------- */
-@media(pointer:coarse){
-  .photo[role=button]{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:scale .2s ease}
-  .photo[role=button]:active{scale:.95}
+@media(any-hover:none){
+  html:not(.mouse) .photo[role=button]{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:scale .2s ease}
+  html:not(.mouse) .photo[role=button]:active{scale:.95}
 }

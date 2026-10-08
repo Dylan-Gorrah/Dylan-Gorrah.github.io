@@ -95,12 +95,13 @@
   .tb b{font-size:.6rem}
 }
 
-/* Tablets (touch screens): no hover there, so the photo is shown at exactly the size it zooms to on hover
-   with a mouse (2x the normal size). Sideways, the intro collapses to one line + "…" (css/home.css) to make room.
+/* Tablets (touch only, nothing that can hover): the photo is shown large, at 2x the normal size
+   (computers zoom it to 2.3x on hover, css/home.css). html:not(.mouse) drops this the moment a real
+   mouse/trackpad moves (js/profile-pop.js), so touchscreen laptops get the normal photo + hover zoom. Sideways, the intro collapses to one line + "…" (css/home.css) to make room.
    Tapping the photo opens the summary (js/profile-pop.js). */
-@media(pointer:coarse) and (min-width:681px) and (max-width:980px){
-  .photo{width:calc(2*clamp(112px,16vw,150px))}        /* upright: ~240px iPad, ~250px Galaxy Tab */
+@media(any-hover:none) and (min-width:681px) and (max-width:980px){
+  html:not(.mouse) .photo{width:calc(2*clamp(112px,16vw,150px))}        /* upright: ~240px iPad, ~250px Galaxy Tab */
 }
-@media(pointer:coarse) and (min-width:981px){
-  .photo{width:calc(2*clamp(84px,min(11vw,15vh),165px))}   /* sideways: ~200-210px, ~280px on tall tablets */
+@media(any-hover:none) and (min-width:981px){
+  html:not(.mouse) .photo{width:calc(2*clamp(84px,min(11vw,15vh),165px))}   /* sideways: ~200-210px, ~280px on tall tablets */
 }

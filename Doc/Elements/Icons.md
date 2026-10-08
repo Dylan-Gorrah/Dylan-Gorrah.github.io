@@ -16,7 +16,7 @@ The `.ic` class (in [[Base Styles]]) sizes it to 18px and draws it as a line in 
 | `i-code` | `</>` | GitHub |
 | `i-in` | LinkedIn | LinkedIn |
 | `i-star` | star | Tutoring award |
-| `i-file` | document | [[CV Button]] (pink) |
+| `i-file` | document | [[CV Button]] (copper) |
 | `i-expand` / `i-shrink` | four corners out / in | full-screen toggle, see [[Fullscreen & App Mode]] |
 
 The [[Section Tiles]] icons are drawn inline in each tile, not taken from the sprite, because they animate (`draw`).

@@ -7,7 +7,6 @@ Surprising things in the code worth knowing before you change it.
 - **Browser Back always goes home from a view, not to the previous view.** Moving between views replaces the history entry on purpose, so visitors don't have to press Back eight times to leave. See [[View System]].
 - **Some facts are repeated.** The CV link, contact details and headline numbers appear in more than one place (the views, the [[Profile Popup]], the SEO block). See [[Common Edits]] for where.
 - **CSS load order matters.** Later files win ties, so a rule can be silently overridden by a file loaded after it. See [[Responsive Layout]].
-- **No `mix-blend-mode` inside the CV button.** It silently breaks the glass. See [[CV Button]].
 - **iOS draws native switches even at `opacity: 0`.** Use `clip-path` to really hide one, and don't overlay switches on buttons. See [[Haptics]].
 
 ## Fixed in the cleanup

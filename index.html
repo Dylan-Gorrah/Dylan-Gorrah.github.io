@@ -187,30 +187,12 @@
   </footer>
 </div>
 
-<!-- CV button: floating "liquid glass" pill. Hidden until the visitor has been idle on home for 5s.
+<!-- CV button: small flat button in the middle of the footer. Hidden until the visitor has been idle on home for 5s.
      Styles: css/cv-button.css, behaviour: js/cv-button.js. Docs: Doc/Elements/CV Button.md
      href = the file in CV/ ; download = the name the visitor's copy gets saved as. -->
 <a class="cv-btn" id="cvBtn" href="CV/Dylan_Gorrah_QA_Tester%20(needRef).pdf" download="Dylan-Gorrah-CV.pdf" target="_blank" rel="noopener">
-  <span class="lg-glass" aria-hidden="true"></span>
   <span class="cv-ic"><svg class="ic"><use href="#i-file"/></svg></span><span class="cv-label">Download CV</span>
 </a>
-<!-- Liquid glass refraction filter (Chromium only). js/cv-button.js draws the displacement map
-     to fit the button and fills in the feImage. Three passes = one per colour channel, slightly
-     different strengths, which gives the faint rainbow fringe at the rim. -->
-<svg class="lg-defs" width="0" height="0" aria-hidden="true" focusable="false">
-  <filter id="lg-cv" color-interpolation-filters="sRGB">
-    <feImage id="lg-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"/>
-    <feDisplacementMap in="SourceGraphic" in2="map" scale="22" xChannelSelector="R" yChannelSelector="B" result="dr"/>
-    <feColorMatrix in="dr" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="r"/>
-    <feDisplacementMap in="SourceGraphic" in2="map" scale="19.5" xChannelSelector="R" yChannelSelector="B" result="dg"/>
-    <feColorMatrix in="dg" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="g"/>
-    <feDisplacementMap in="SourceGraphic" in2="map" scale="17" xChannelSelector="R" yChannelSelector="B" result="db"/>
-    <feColorMatrix in="db" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"/>
-    <feBlend in="r" in2="g" mode="screen" result="rg"/>
-    <feBlend in="rg" in2="b" mode="screen" result="rgb"/>
-    <feGaussianBlur in="rgb" stdDeviation="0.6"/>
-  </filter>
-</svg>
 
 <!-- Profile popup: quick summary card that grows out of the phone avatar (#meOpen).
      Styles: css/profile-pop.css, behaviour: js/profile-pop.js. Docs: Doc/Elements/Profile Popup.md -->

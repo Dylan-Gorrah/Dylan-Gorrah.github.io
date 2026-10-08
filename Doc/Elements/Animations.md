@@ -18,7 +18,6 @@
 | `g1` / `g2` | Hello ↔ Hallo swap in [[Languages]] |
 | `leadIn` | [[Profile Card]] intro text blurring in when "…" expands |
 | `avatarHint` | [[Profile Popup]] avatar's 3 "tap me" pulses (soft neutral glow) |
-| `float` (+ `nudge`) | [[CV Button]] bobbing, arrow hop |
 
 ## Replay on open
 View content animates only while the view has the class `play`. [[View System]] removes and re-adds it each time a view opens, which restarts the animations. Elements get a stagger delay from `--i` (their position).

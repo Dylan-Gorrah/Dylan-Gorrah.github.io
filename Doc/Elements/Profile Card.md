@@ -23,7 +23,7 @@ On phones (≤ 680px) the intro shows just **"Software developer moving into QA"
 ## Photo
 **Click / tap → summary (all screens bigger than a phone).** Clicking the photo on a computer, or tapping it on a tablet, opens the [[Profile Popup]] summary, growing out of the photo and shrinking back into it. The script makes the photo a real button (`role=button`, focusable, Enter/Space opens it). Phones use the small corner avatar instead.
 
-**Tablets (iPad, Galaxy Tab S7 / A9…):** there's no hover on a touch screen, so the photo is shown at **exactly the size it zooms to on hover with a mouse** (2× the normal size). Rules are at the end of `responsive.css`, all `pointer: coarse`:
+**Tablets (iPad, Galaxy Tab S7 / A9…):** there's no hover on a touch screen, so the photo is shown at **2× the normal size** (a little smaller than the 2.3× hover zoom on computers). Rules are at the end of `responsive.css`, all `any-hover: none` (nothing on the device can hover; a touchscreen laptop with a mouse or trackpad counts as a computer, not a tablet):
 | Tablet | Photo |
 |---|---|
 | Upright (681–980px) | `calc(2*clamp(112px,16vw,150px))`: ~240px iPad, ~250px Galaxy Tab |
@@ -31,8 +31,9 @@ On phones (≤ 680px) the intro shows just **"Software developer moving into QA"
 
 Sideways on shorter screens (≤ 820px tall), a photo that big pushed the name out of the card, so there the **intro collapses to one line + "…"** like on phones (`css/home.css`). That frees the ~70px needed; measured to fit at every tablet size.
 
-**Hover zoom (computers):** on screens with a mouse or trackpad (wider than 680px), hovering the photo makes it grow to **2×** from its top-right corner with the site's easing (`cubic-bezier(.2,.7,.2,1)`), with a copper ring and a deeper shadow, then it shrinks back when the mouse leaves. The cursor is a pointer, because clicking opens the summary.
-- **Where:** `css/home.css`, under the `.photo` rules. Change `scale:2` there to make it bigger or smaller.
+**Hover zoom (computers):** on screens with a mouse or trackpad (wider than 680px), hovering the photo makes it grow to **2.3×** from its top-right corner with the site's easing (`cubic-bezier(.2,.7,.2,1)`), with a copper ring and a deeper shadow, then it shrinks back when the mouse leaves. The cursor is a pointer, because clicking opens the summary.
+- **How it knows there's a mouse:** `js/profile-pop.js` adds `mouse` to `<html>` the first time a real mouse or trackpad moves; the zoom rules are `html.mouse .photo…`, and the big tablet size is `html:not(.mouse) .photo`. CSS-only checks (`hover` / `pointer`) are not enough, because touchscreen laptops often report "no hover", which left the photo stuck big with no zoom.
+- **Where:** `css/home.css`, under the `.photo` rules. Change `scale:2.3` there to make it bigger or smaller.
 - **How:** it uses the separate CSS `scale` property so it doesn't fight the floating `bob` animation, which uses `transform`.
 - It only works once the real photo has loaded (`.photo.has`).
 

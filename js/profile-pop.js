@@ -56,6 +56,11 @@
   /* Tablets and computers: clicking/tapping the big profile photo opens the summary too
      (computers still get the hover zoom from css/home.css first). Phones use the avatar above. */
   var photo=$('.photo');
+  /* Mark the page as having a mouse/trackpad the first time one moves. Touchscreen laptops often
+     report "no hover" to CSS, which wrongly gave them the big tablet photo with no hover zoom;
+     html.mouse (css/home.css, css/responsive.css) fixes that. */
+  function sawMouse(e){ if(e.pointerType==='mouse'){ document.documentElement.classList.add('mouse'); window.removeEventListener('pointermove',sawMouse); } }
+  window.addEventListener('pointermove',sawMouse,{passive:true});
   if(photo){
     photo.setAttribute('role','button'); photo.tabIndex=0;
     photo.setAttribute('aria-label','Quick summary about Dylan'); photo.setAttribute('aria-haspopup','dialog');

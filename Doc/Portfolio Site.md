@@ -26,7 +26,7 @@ Profile/
 │  ├─ responsive.css     ← home screen at phone/tablet/short-screen sizes
 │  ├─ views.css          ← full-screen view shell + shared view parts
 │  ├─ sections/          ← one file per view (about, stack, freelance, …)
-│  ├─ cv-button.css      ← floating glass Download CV button
+│  ├─ cv-button.css      ← small flat frosted-glass Download CV button
 │  ├─ profile-pop.css    ← phone avatar + quick-summary popup
 │  ├─ safe-area.css      ← keeps content clear of phone notches (esp. in full screen)
 │  └─ animations.css     ← every @keyframes + reduced-motion
@@ -71,7 +71,7 @@ Profile/
 - **[[Profile Popup]]**: phones only. A small photo beside your name opens a quick-summary card (photo, pitch, key facts, WhatsApp and CV buttons).
 - **[[Skill Graph]]**: the dark "Overall stats" radar chart with bars and a readout. It's built by `js/radar.js` from the scores in `data.js` and cycles through the axes on its own.
 - **[[Section Tiles]]**: the 8 app-style buttons. Each one's `data-go` names the view it opens.
-- **[[CV Button]]**: a floating Apple-style liquid-glass "Download CV" pill that really bends the page behind it in Chrome and Edge, with a frosted look elsewhere. It appears after 5s idle on home only and serves the PDF in `CV/`.
+- **[[CV Button]]**: a small flat "Download CV" button in the middle of the footer strip, so it never covers the tiles. It appears after 5s idle on home only and serves the PDF in `CV/`.
 
 ---
 
