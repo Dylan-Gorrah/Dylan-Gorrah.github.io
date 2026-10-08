@@ -28,5 +28,8 @@ When someone adds the site to their home screen, it gets the **DG app icon** and
 - ⚠ The manifest only loads from a real web address (GitHub Pages), **not** when `index.html` is opened from a folder. That's normal.
 - In app mode there's no browser Back button. The site's own Back button and swipes still work (see [[View System]]).
 
+## Notches in full screen
+Full screen lets the page reach the very top of the screen, so [[Safe Areas]] adds room for the camera notch there.
+
 ## Changing the icon
 The icons were generated from the same "DG" design as the browser-tab favicon. To use a different icon, replace the four PNGs in `img/icons/` with the same names and sizes (keep the maskable one with extra padding around the design).

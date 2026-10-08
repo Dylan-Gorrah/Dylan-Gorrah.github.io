@@ -1,0 +1,31 @@
+/* safe-area.css: keeps content clear of phone notches, camera cut-outs and rounded corners.
+   Loads AFTER home/responsive/views/profile-pop so these paddings win. Docs: Doc/Elements/Safe Areas.md
+
+   Phones report the notch size as env(safe-area-inset-*). In full screen many Android phones
+   report 0 even though the camera cut-out is still there, so the ticker slid under the notch.
+   --safe-top therefore has a 32px floor whenever a phone is in full screen (portrait). */
+:root{--safe-top:env(safe-area-inset-top,0px)}
+
+/* Full screen via the toggle button (Fullscreen API) */
+@media(pointer:coarse) and (orientation:portrait){
+  :root:fullscreen{--safe-top:max(env(safe-area-inset-top,0px),32px)}
+}
+@media(pointer:coarse) and (orientation:portrait){
+  :root:-webkit-full-screen{--safe-top:max(env(safe-area-inset-top,0px),32px)}   /* older Safari / iPad */
+}
+/* Full screen as a home-screen app (manifest "display": "fullscreen") */
+@media(pointer:coarse) and (orientation:portrait) and (display-mode:fullscreen){
+  :root{--safe-top:max(env(safe-area-inset-top,0px),32px)}
+}
+
+/* Everything that sits at the top edge uses --safe-top */
+.page{padding-top:calc(16px + var(--safe-top))}
+.vbar{padding-top:calc(10px + var(--safe-top))}
+.me-pop{padding-top:calc(16px + var(--safe-top))}
+
+/* Landscape: the notch moves to the left or right side */
+@media(pointer:coarse) and (orientation:landscape){
+  .page{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .vbar{padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+  .vin{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}

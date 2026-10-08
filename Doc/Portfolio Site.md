@@ -28,6 +28,7 @@ Profile/
 │  ├─ sections/          ← one file per view (about, stack, freelance, …)
 │  ├─ cv-button.css      ← floating glass Download CV button
 │  ├─ profile-pop.css    ← phone avatar + quick-summary popup
+│  ├─ safe-area.css      ← keeps content clear of phone notches (esp. in full screen)
 │  └─ animations.css     ← every @keyframes + reduced-motion
 ├─ js/
 │  ├─ utils.js           ← shared helpers (loaded first)
@@ -48,6 +49,8 @@ Profile/
 **[[Site Data]]**: `js/data.js`. Holds every list the scripts build from: ticker words, skill scores, stack tools and the view order. Most "update my skills" edits only touch this file.
 
 **[[Responsive Layout]]**: `css/responsive.css`. Rearranges and hides parts of home on phones, tablets and short screens. The order the CSS files load in matters, so read this note before moving files around.
+
+**[[Safe Areas]]**: `css/safe-area.css`. Keeps the ticker, view headers and popup clear of phone notches and camera cut-outs, including in full screen, where many phones under-report the notch.
 
 **[[Animations]]**: `css/animations.css`. Every named animation lives here, and so does the switch that turns motion off for visitors who ask their OS to reduce it.
 

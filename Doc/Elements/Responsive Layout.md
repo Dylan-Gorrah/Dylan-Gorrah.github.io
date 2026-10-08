@@ -16,5 +16,7 @@ Adapts the [[Home Screen]] to different screens. Home is meant to fit in **one s
 
 Views have their own simple layout (max 760px wide, centred) in `css/views.css`. They mostly don't need breakpoints.
 
+Notches and cut-outs are handled separately in [[Safe Areas]].
+
 ## ⚠ Load order matters
 The CSS files load in this order: `base → home → responsive → views → sections/* → animations`. When two rules are equally specific, **the later file wins**. Rules that adjust view parts must therefore live in `views.css` or later, not in `responsive.css`. See [[Known Quirks]].
