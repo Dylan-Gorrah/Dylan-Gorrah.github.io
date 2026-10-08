@@ -8,7 +8,7 @@
   .name-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
   .avatar{order:1}                          /* sits to the right of the name */
   .profile-top .photo{display:none}         /* the avatar replaces the big photo on phones */
-  .avatar{display:grid;place-items:center;flex:none;position:relative;width:48px;height:48px;padding:0;border-radius:50%;overflow:hidden;
+  .avatar{display:grid;place-items:center;flex:none;position:relative;width:72px;height:72px;padding:0;border-radius:50%;overflow:hidden;
     background:linear-gradient(145deg,#dedbd2,#bdb9ae);border:2px solid var(--card);
     box-shadow:0 0 0 1.5px var(--copper),0 6px 16px rgba(20,20,19,.16);
     font:600 .8rem var(--font);color:var(--muted);

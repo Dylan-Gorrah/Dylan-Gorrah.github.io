@@ -8,7 +8,7 @@ On phones, short screens hide the photo row (see [[Responsive Layout]]), and mos
 
 ## The avatar
 - `.name-row` wraps the avatar and the `<h1>`. On desktop and tablet it's `display: contents` (as if it isn't there) and the avatar is hidden, so the desktop layout is unchanged.
-- 48px circle with a copper ring. It pulses softly 3 times after load (`avatarHint` in [[Animations]]) as a "tap me" hint.
+- 72px circle with a copper ring (was 48px; made 50% bigger). It pulses softly 3 times after load (`avatarHint` in [[Animations]]) as a "tap me" hint.
 - If the photo is missing it shows the initials "DG".
 
 ## The popup
