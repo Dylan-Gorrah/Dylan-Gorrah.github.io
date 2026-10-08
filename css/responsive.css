@@ -61,7 +61,7 @@
   .tech-card{padding:14px 16px;min-height:190px}
 }
 @media(max-width:680px) and (max-height:760px){
-  .tech-title,.lead,.profile-top{display:none}
+  .tech-title,.profile-top{display:none}   /* the intro stays: on phones it is one short line + "…" */
   .read small{display:none}
   .read{padding:7px 12px}
   .tile{min-height:64px}

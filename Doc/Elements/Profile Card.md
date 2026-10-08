@@ -18,7 +18,7 @@ On phones (≤ 680px) the intro shows just **"Software developer moving into QA"
 - **Markup:** `.lead-short` (always shown) + `.lead-rest` (the rest, starting with ". I write…") + `button.lead-more`. Edit the text in those two spans; together they read as one sentence on desktop.
 - **Code:** `js/lead.js` (toggle + height animation), the phone rules at the end of `css/home.css`, and `leadIn` in [[Animations]].
 - Desktop and tablet always show the full text with no button.
-- Short phone screens still hide the intro entirely to make room (see [[Responsive Layout]]).
+- It shows on **all** phone heights. Short phones used to hide the intro entirely, which made it vanish on an iPhone 11 in Safari (~715px tall with the browser bars); that rule was dropped because the collapsed intro is just one line (see [[Responsive Layout]]).
 
 ## Photo
 **Hover zoom (computers):** on screens with a mouse or trackpad (wider than 680px), hovering the photo makes it grow to **2×** from its top-right corner with the site's easing (`cubic-bezier(.2,.7,.2,1)`), with a copper ring and a deeper shadow, then it shrinks back when the mouse leaves.
