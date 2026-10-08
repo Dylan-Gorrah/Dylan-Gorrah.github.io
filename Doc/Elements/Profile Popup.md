@@ -1,7 +1,10 @@
 # Profile Popup
 **Markup:** `.name-row` / `#meOpen` (avatar beside the name) and `#mePop` (the popup, after the CV button) in `index.html` · **Styles:** `css/profile-pop.css` · **Script:** `js/profile-pop.js` · Back to [[Profile Card]]
 
-**Phones only (≤ 680px wide).** A small round photo sits on the **right** of your name (`.avatar{order:1}`, pushed right by `justify-content:space-between`). Tapping it grows a quick-summary card out of the photo, the same circle-reveal as the [[View System|views]].
+**Phones only (≤ 680px wide).** A round photo is pinned in the **top-right corner of the profile card** (`position:absolute; top:12px; right:12px` on `.avatar`, with `.left` as the anchor), sitting evenly 13px from the top and right edges.
+- The name row has `padding-right:72px`, so the name never runs under the photo.
+- On short phones the "Hello, I'm" row is hidden and the name sits beside the photo, so `.name-row` gets `min-height:68px`; the title line then always starts below the photo.
+- Checked at 320, 360, 375, 414 and 430px wide: no overlap at any size. Tapping it grows a quick-summary card out of the photo, the same circle-reveal as the [[View System|views]].
 
 ## Why it exists
 On phones, short screens hide the photo row (see [[Responsive Layout]]), and most real phones count as short once the browser bars are showing. The avatar beside the name is always visible, so phones always see your face. The big `.photo` is hidden on phones so it isn't shown twice.
