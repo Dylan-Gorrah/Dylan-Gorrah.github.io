@@ -134,8 +134,6 @@
              profile popup below. Desktop/tablet hide the avatar. Docs: Doc/Elements/Profile Popup.md -->
         <div class="name-row">
           <button class="avatar" type="button" id="meOpen" aria-label="Quick summary about Dylan" aria-haspopup="dialog" aria-controls="mePop"><img src="img/dylan-gorrah.jpg" alt="" onerror="this.remove()"><span>DG</span></button>
-          <!-- iPhone haptics: invisible native switch over the avatar; a real tap on it plays the tick (js/haptics.js) -->
-          <input class="hx-tap hx-avatar" type="checkbox" switch tabindex="-1" aria-hidden="true">
           <h1><span class="l" style="--i:0"><span>Dylan</span></span> <span class="l" style="--i:1"><span>Gorrah</span></span></h1>
         </div>
         <p class="title">Software Developer <span>/</span> QA &amp; Test Automation</p>
@@ -220,7 +218,6 @@
   <div class="me-back" data-close></div>
   <article class="me-card card">
     <button class="me-x" type="button" aria-label="Close" data-close><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    <input class="hx-tap hx-x" type="checkbox" switch tabindex="-1" aria-hidden="true">
     <div class="me-photo"><img src="img/dylan-gorrah.jpg" alt="Dylan Gorrah" onerror="this.remove()"></div>
     <p class="eyebrow" style="color:var(--copper)">Open to QA roles</p>
     <h2 class="me-name" id="meName">Dylan Gorrah</h2>

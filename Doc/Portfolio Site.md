@@ -53,7 +53,7 @@ Profile/
 
 **[[Safe Areas]]**: `css/safe-area.css`. Keeps the ticker, view headers and popup clear of phone notches and camera cut-outs, including in full screen, where many phones under-report the notch.
 
-**[[Haptics]]**: `js/haptics.js`. Phone vibration ticks timed to the animations: the profile popup rolls out with a tick per row, and views tick as they open and close. Android gets the full rhythm; iPhones get it on iOS 17.4–26.4 and a tap tick on 26.5+.
+**[[Haptics]]**: `js/haptics.js`. Phone vibration ticks timed to the animations: the profile popup rolls out with a tick per row, and views tick as they open and close. Android gets the full rhythm; iPhones get it on iOS 17.4–26.4 (none on 26.5+).
 
 **[[Animations]]**: `css/animations.css`. Every named animation lives here, and so does the switch that turns motion off for visitors who ask their OS to reduce it.
 

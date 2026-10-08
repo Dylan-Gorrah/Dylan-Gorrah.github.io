@@ -5,9 +5,9 @@
    - Android (Chrome etc.): navigator.vibrate() with an on/off pattern, so the whole rhythm plays.
    - iPhone: Safari has no vibrate(). Instead, flipping an <input type="checkbox" switch> plays the
      system haptic tick. iOS 17.4–26.4 let scripts flip a hidden one, so the full rhythm plays.
-     iOS 26.5+ only ticks on a REAL finger tap on the switch, so invisible native switches sit on
-     top of the profile avatar and the popup's × (.hx-tap in index.html), which give the tap tick;
-     later ticks in a pattern are silently skipped there.
+     iOS 26.5+ only ticks on a real finger tap ON a switch, and iOS draws switches even at
+     opacity 0 (a slider showed up next to the name), so there are no tap overlays: those
+     iPhones simply get no haptics.
    - Desktop: nothing. */
 window.Site = window.Site || {};
 (function(S){
@@ -37,10 +37,10 @@ window.Site = window.Site || {};
   /* iPhone: one hidden switch + label. Clicking the label flips the switch = one tick. */
   var label=null;
   if(iosSwitch){
-    document.documentElement.classList.add('ios-haptics');   /* reveals the .hx-tap overlays */
     var box=document.createElement('div'), sw=document.createElement('input');
     box.setAttribute('aria-hidden','true');
-    box.style.cssText='position:fixed;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden';
+    /* clip-path hides it for real: iOS ignores opacity on native switches */
+    box.style.cssText='position:fixed;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden;clip-path:inset(50%)';
     sw.type='checkbox'; sw.setAttribute('switch',''); sw.id='hx-sw'; sw.tabIndex=-1;
     label=document.createElement('label'); label.htmlFor='hx-sw';
     box.appendChild(sw); box.appendChild(label);
@@ -56,15 +56,13 @@ window.Site = window.Site || {};
   }
   function cancel(){ timers.forEach(clearTimeout); timers=[]; }
 
-  /* opts.tapped = the user's finger already hit a native switch overlay, which played the first tick */
-  function play(name,opts){
+  function play(name){
     var p=P[name]; if(!p) return;
-    opts=opts||{}; cancel();
+    cancel();
     if(S.rm) p=[p[0]];                      /* reduced motion: no rhythm to follow, just the tap */
     if(canVibrate){ try{ navigator.vibrate(toVibrate(p)); }catch(e){} return; }
     if(iosSwitch){
-      p.forEach(function(s,i){
-        if(i===0&&opts.tapped) return;
+      p.forEach(function(s){
         if(s[0]===0) iosTick(); else timers.push(setTimeout(iosTick,s[0]));
       });
     }

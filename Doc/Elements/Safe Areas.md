@@ -3,6 +3,9 @@
 
 Keeps content clear of phone **notches, camera cut-outs and rounded corners**.
 
+> [!note] Seen only in the desktop mobile emulator
+> The notch overlap was spotted in a PC browser's phone emulator. On a real iPhone 11 it was never a problem. The rules stay as a harmless safety net for Android phones that under-report the notch in full screen.
+
 ## The problem it fixes
 Phones tell the page how big the notch is through `env(safe-area-inset-top)` etc. (the page opts in with `viewport-fit=cover` in the viewport meta tag). But in **full screen** (the [[Fullscreen & App Mode|toggle button]] or the home-screen app), many Android phones report **0**, even though the camera cut-out is still there. So the [[Ticker]] slid up under the notch.
 
