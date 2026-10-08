@@ -29,5 +29,8 @@ On phones, short screens hide the photo row (see [[Responsive Layout]]), and mos
 - The background blur is a CSS transition on `.me-pop.on .me-back` (`css/profile-pop.css`). The card's circle is a JS animation on `.me-card` (`cardClip()` in `js/profile-pop.js`). They're kept separate so the background never gets "cut" by the circle.
 - While it's open, Tab stays inside the card (keyboard and screen-reader friendly).
 
+## Haptics
+On phones the popup **rolls out with a tick per row** as it opens, and ticks again as it docks back into the avatar. On iPhone, invisible native switches over the avatar and × make the tap tick work on iOS 26.5+. See [[Haptics]].
+
 ## ⚠ Keep in sync
 The popup **repeats** facts shown elsewhere: the title, the pass rate, the test numbers, the diploma date, the WhatsApp number and the **CV link**. When any of those change, update the popup too. See [[Common Edits]].

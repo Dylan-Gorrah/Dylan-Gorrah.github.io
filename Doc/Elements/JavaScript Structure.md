@@ -7,6 +7,7 @@ These are plain `<script>` files, **not** ES modules. Browsers block modules on 
 Load order (bottom of `index.html`). **Keep it this way:**
 1. `utils.js`: creates `Site` and adds `Site.$` (find one element), `Site.$$` (find all, as an array) and `Site.rm` (true if the visitor prefers reduced motion).
 2. `data.js`: `Site.data`, all the lists. See [[Site Data]].
+2b. `haptics.js`: `Site.haptics.play(name)`. See [[Haptics]].
 3. `ticker.js`: [[Ticker]]
 4. `radar.js`: [[Skill Graph]]
 5. `spotlight.js`: [[Spotlight Effect]]

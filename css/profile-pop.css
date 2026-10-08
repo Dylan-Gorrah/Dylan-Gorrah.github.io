@@ -45,3 +45,17 @@
 .me-facts dd{margin:3px 0 0;font-weight:600;font-size:.82rem;letter-spacing:-.01em}
 .me-card .btns{width:100%}
 .me-card .btn{flex:1}
+
+/* ---------- iPhone haptic overlays (js/haptics.js) ----------
+   Real native switches, invisible, sitting exactly on top of the avatar and the ×.
+   iOS 26.5+ only plays a haptic when a finger taps a switch directly, so the tap lands
+   on the switch (tick) and the script then opens/closes the popup.
+   Must stay a native switch: opacity 0 is fine, but restyling it (appearance:none) kills the haptic.
+   !important on opacity beats the .me-card>* rise animation, which would fade it in. */
+.hx-tap{display:none}
+.ios-haptics .hx-tap{position:absolute;z-index:3;margin:0;padding:0;opacity:0!important;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ios-haptics .hx-x{display:block;top:12px;right:12px;width:40px;height:40px;clip-path:inset(0 round 12px)}
+@media(max-width:680px){
+  .name-row{position:relative}
+  .ios-haptics .hx-avatar{display:block;right:0;top:50%;width:48px;height:48px;margin-top:-24px;clip-path:inset(0 round 50%)}
+}

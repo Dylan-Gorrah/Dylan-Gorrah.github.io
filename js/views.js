@@ -7,6 +7,10 @@
   var cur=null, z=10, token=0;
   function pad(n){ return (n<10?'0':'')+n; }
   /* Tell other scripts a view opened (id) or we're back home (null). cv-button.js listens. */
+  /* vibration ticks timed to the grow/shrink (js/haptics.js). Off until the page has loaded, so a
+     #projects link opening on load doesn't buzz. */
+  var hapticsOn=false; setTimeout(function(){ hapticsOn=true; },0);
+  function buzz(name){ if(hapticsOn&&S.haptics) S.haptics.play(name); }
   function announce(id){ document.dispatchEvent(new CustomEvent('site:view',{detail:{id:id}})); }
 
   /* ---------- Browser history ----------
@@ -46,6 +50,7 @@
   function go(id,from,viaHistory){
     if(ORDER.indexOf(id)<0||id===cur) return;
     var v=$('#v-'+id), o=from||tileCenter(id), tk=++token;
+    buzz(cur?'viewStep':'viewOpen');
     if(!viaHistory) hist(cur?'replaceState':'pushState',id);
     stopAnims(v); v.hidden=false; v.style.zIndex=++z; v.classList.remove('play'); void v.offsetWidth; v.classList.add('play');
     $('.vbody',v).scrollTop=0; cur=id; document.title=NAMES[id]+' · Dylan Gorrah';
@@ -64,6 +69,7 @@
     if(!cur) return;
     if(!viaHistory){ if(history.state&&history.state.view){ history.back(); return; } hist('replaceState',null); }
     var id=cur, v=$('#v-'+id), o=tileCenter(id), t=$('.tile[data-go="'+id+'"]'), tk=++token;
+    buzz('viewClose');
     cur=null; document.title='Dylan Gorrah | Software Developer & QA Tester, Bloemfontein';
     announce(null);
     var done=function(){ if(tk!==token) return; hideNow(v); if(t) t.focus({preventScroll:true}); };
