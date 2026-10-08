@@ -53,17 +53,14 @@
 
   btn.addEventListener('click',function(){ open(btn); });
 
-  /* Tablets (touch screens bigger than a phone): the big profile photo opens the summary too.
-     Mouse/trackpad screens keep the hover zoom instead (css/home.css). */
-  var photo=$('.photo'), touch=window.matchMedia&&matchMedia('(pointer: coarse)');
-  if(photo&&touch){
-    var armPhoto=function(){
-      if(touch.matches){ photo.setAttribute('role','button'); photo.tabIndex=0; photo.setAttribute('aria-label','Quick summary about Dylan'); photo.setAttribute('aria-haspopup','dialog'); }
-      else { photo.setAttribute('role','img'); photo.removeAttribute('tabindex'); photo.setAttribute('aria-label','Profile photo'); photo.removeAttribute('aria-haspopup'); }
-    };
-    armPhoto(); if(touch.addEventListener) touch.addEventListener('change',armPhoto);
-    photo.addEventListener('click',function(){ if(touch.matches) open(photo); });
-    photo.addEventListener('keydown',function(e){ if(touch.matches&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); open(photo); } });
+  /* Tablets and computers: clicking/tapping the big profile photo opens the summary too
+     (computers still get the hover zoom from css/home.css first). Phones use the avatar above. */
+  var photo=$('.photo');
+  if(photo){
+    photo.setAttribute('role','button'); photo.tabIndex=0;
+    photo.setAttribute('aria-label','Quick summary about Dylan'); photo.setAttribute('aria-haspopup','dialog');
+    photo.addEventListener('click',function(){ open(photo); });
+    photo.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(photo); } });
   }
   window.addEventListener('popstate',function(){ if(isOpen&&!(history.state&&history.state.pop)) close(true); });
   $$('[data-close]',pop).forEach(function(e){ e.addEventListener('click',function(){ close(); }); });

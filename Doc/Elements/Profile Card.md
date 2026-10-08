@@ -21,11 +21,16 @@ On phones (≤ 680px) the intro shows just **"Software developer moving into QA"
 - It shows on **all** phone heights. Short phones used to hide the intro entirely, which made it vanish on an iPhone 11 in Safari (~715px tall with the browser bars); that rule was dropped because the collapsed intro is just one line (see [[Responsive Layout]]).
 
 ## Photo
-**Tablets (iPad, Galaxy Tab S7 / A9…):**
-- **Size:** upright, the photo scales with the screen (`clamp(112px,16vw,150px)` in `responsive.css`): ~120px on an iPad, ~128px on a Tab S7. Sideways, touch screens get `clamp(120px,min(13vw,20vh),180px)` (~130–175px) instead of the desktop size, which was only ~100px there.
-- **Tap to open:** on touch screens bigger than a phone, tapping the photo opens the [[Profile Popup]] summary, growing out of the photo and shrinking back into it. The script makes the photo a proper button (`role=button`, focusable, Enter/Space) only on touch screens; computers with a mouse keep it as an image with the hover zoom.
+**Click / tap → summary (all screens bigger than a phone).** Clicking the photo on a computer, or tapping it on a tablet, opens the [[Profile Popup]] summary, growing out of the photo and shrinking back into it. The script makes the photo a real button (`role=button`, focusable, Enter/Space opens it). Phones use the small corner avatar instead.
 
-**Hover zoom (computers):** on screens with a mouse or trackpad (wider than 680px), hovering the photo makes it grow to **2×** from its top-right corner with the site's easing (`cubic-bezier(.2,.7,.2,1)`), with a copper ring and a deeper shadow, then it shrinks back when the mouse leaves.
+**Tablets (iPad, Galaxy Tab S7 / A9…):** there's no hover on a touch screen, so the photo is simply shown at its big "hovered" size, as large as each layout fits without pushing the name out of the card (measured at real tablet sizes; rules at the end of `responsive.css`, all `pointer: coarse`):
+| Tablet | Photo |
+|---|---|
+| Upright (681–980px) | `clamp(200px,30vw,260px)`: ~225px iPad, ~235–245px Galaxy Tab |
+| Sideways (≥ 981px) | `clamp(120px,min(18vw,20vh),240px)`: ~135–145px. Short screens set the limit; any bigger pushes the name out of the card |
+| Sideways, tall (≥ 850px high, e.g. iPad Pro) | `min(18vw,26vh)`: ~240px |
+
+**Hover zoom (computers):** on screens with a mouse or trackpad (wider than 680px), hovering the photo makes it grow to **2×** from its top-right corner with the site's easing (`cubic-bezier(.2,.7,.2,1)`), with a copper ring and a deeper shadow, then it shrinks back when the mouse leaves. The cursor is a pointer, because clicking opens the summary.
 - **Where:** `css/home.css`, under the `.photo` rules. Change `scale:2` there to make it bigger or smaller.
 - **How:** it uses the separate CSS `scale` property so it doesn't fight the floating `bob` animation, which uses `transform`.
 - It only works once the real photo has loaded (`.photo.has`).

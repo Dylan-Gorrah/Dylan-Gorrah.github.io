@@ -95,8 +95,15 @@
   .tb b{font-size:.6rem}
 }
 
-/* Landscape tablets (touch, desktop layout): the desktop photo size is capped by screen height, which
-   made it ~100px on an iPad / Galaxy Tab turned sideways. Give touch screens a larger photo. */
+/* Tablets (touch screens): no hover zoom there, so the photo is simply shown at its big "hovered" size,
+   as large as each layout fits without pushing the name out of the card (measured at iPad / Galaxy Tab sizes).
+   Tapping it opens the summary (js/profile-pop.js). */
+@media(pointer:coarse) and (min-width:681px) and (max-width:980px){
+  .photo{width:clamp(200px,30vw,260px)}               /* upright: ~225px iPad, ~235-245px Galaxy Tab */
+}
 @media(pointer:coarse) and (min-width:981px){
-  .photo{width:clamp(120px,min(13vw,20vh),180px)}
+  .photo{width:clamp(120px,min(18vw,20vh),240px)}     /* sideways: ~135-145px (short screens limit it) */
+}
+@media(pointer:coarse) and (min-width:981px) and (min-height:850px){
+  .photo{width:clamp(120px,min(18vw,26vh),240px)}     /* sideways on tall tablets (iPad Pro): ~240px */
 }

@@ -29,7 +29,7 @@
 @media(hover:hover) and (pointer:fine) and (min-width:681px){
   .photo{transform-origin:100% 0;z-index:2;
     transition:scale .45s cubic-bezier(.5,0,.3,1),box-shadow .45s ease,border-color .45s ease}
-  .photo.has:hover{scale:2;cursor:zoom-in;border-color:rgba(176,85,47,.55);
+  .photo.has:hover{scale:2;cursor:pointer;border-color:rgba(176,85,47,.55);
     box-shadow:0 0 0 6px var(--card),0 0 0 7.5px rgba(176,85,47,.35),0 30px 70px rgba(20,20,19,.28);
     transition:scale .7s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease,border-color .5s ease}
 }
