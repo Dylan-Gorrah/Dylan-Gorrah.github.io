@@ -13,10 +13,20 @@ On phones, short screens hide the photo row (see [[Responsive Layout]]), and mos
 
 ## The avatar
 - `.name-row` wraps the avatar and the `<h1>`. On desktop and tablet it's `display: contents` (as if it isn't there) and the avatar is hidden, so the desktop layout is unchanged.
-- 72px circle with a copper ring (was 48px; made 50% bigger). It pulses softly 3 times after load (`avatarHint` in [[Animations]]) as a "tap me" hint.
+- 72px circle with a soft shadow and **no coloured ring** (removed on phones; the summary card's photo also drops its ring on phones). Was 48px; made 50% bigger. It pulses softly 3 times after load (`avatarHint` in [[Animations]]) as a "tap me" hint (a soft neutral glow, not orange).
 - If the photo is missing it shows the initials "DG".
 
 ## The popup
+**Scales with the screen.** The card is designed at phone size, and every size inside it (width, photo, text, padding, buttons) is multiplied by `--s` (`css/profile-pop.css`). Each step was checked to fit the screen height without scrolling:
+| Screen | `--s` | Card width |
+|---|---|---|
+| Phones | 1 | 380px |
+| Tablets sideways / short laptops (≥ 600px tall) | 1.15 | ~437px |
+| Upright tablets, laptops (≥ 720px tall) | 1.3 | ~494px |
+| Tall tablets upright (≥ 760 wide, ≥ 1000 tall) | 1.6 | ~608px (≈ 77% of an iPad's width) |
+| Desktops (≥ 1100 × 860) | 1.5 | ~570px |
+| Large desktops (≥ 1400 × 980) | 1.6 | ~608px |
+
 | Part | Class | Content |
 |---|---|---|
 | Close | `.me-x` | × button (top right) |

@@ -11,7 +11,7 @@
   .profile-top .photo{display:none}         /* the avatar replaces the big photo on phones */
   .avatar{display:grid;place-items:center;position:absolute;top:12px;right:12px;z-index:1;width:72px;height:72px;padding:0;border-radius:50%;overflow:hidden;
     background:linear-gradient(145deg,#dedbd2,#bdb9ae);border:2px solid var(--card);
-    box-shadow:0 0 0 1.5px var(--copper),0 6px 16px rgba(20,20,19,.16);
+    box-shadow:0 6px 16px rgba(20,20,19,.16);   /* no coloured ring on phones, just a soft lift */
     font:600 .8rem var(--font);color:var(--muted);
     animation:avatarHint 2.6s ease-out 1.4s 3}  /* a few soft pulses to say "tap me" */
   .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -33,24 +33,37 @@
 .me-pop.on .me-back{background:rgba(230,227,219,.6);
   -webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);
   transition:background .45s cubic-bezier(.2,.7,.2,1),-webkit-backdrop-filter .45s cubic-bezier(.2,.7,.2,1),backdrop-filter .45s cubic-bezier(.2,.7,.2,1)}
-.me-card{position:relative;width:min(100%,380px);max-height:100%;overflow-y:auto;overscroll-behavior:contain;padding:22px;display:grid;gap:10px;box-shadow:var(--shadow)}
+/* The card is designed at phone size, then SCALED for bigger screens with --s: every size inside
+   (width, photo, text, padding, buttons) is multiplied by it. Steps are chosen so the whole card
+   always fits the screen height without scrolling (checked at phone, tablet and desktop sizes). */
+.me-card{--s:1;position:relative;width:min(100%,calc(380px*var(--s)));max-height:100%;overflow-y:auto;overscroll-behavior:contain;
+  padding:calc(22px*var(--s));display:grid;gap:calc(10px*var(--s));border-radius:calc(24px*var(--s));box-shadow:var(--shadow)}
+@media(min-width:681px) and (min-height:600px){.me-card{--s:1.15}}    /* tablets sideways */
+@media(min-width:681px) and (min-height:720px){.me-card{--s:1.3}}     /* tablets upright, laptops */
+@media(min-width:1100px) and (min-height:860px){.me-card{--s:1.5}}    /* desktops */
+@media(min-width:760px) and (min-height:1000px){.me-card{--s:1.6}}    /* tall tablets upright (iPad, Galaxy Tab) */
+@media(min-width:1400px) and (min-height:980px){.me-card{--s:1.6}}    /* large desktops */
 .me-pop.play .me-card>*{animation:rise .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*55ms + .18s)}
 
-.me-x{position:absolute;top:12px;right:12px;width:40px;height:40px;display:grid;place-items:center;background:var(--paper-2);border:1px solid var(--line);border-radius:12px}
+.me-x{position:absolute;top:calc(12px*var(--s));right:calc(12px*var(--s));width:calc(40px*var(--s));height:calc(40px*var(--s));display:grid;place-items:center;background:var(--paper-2);border:1px solid var(--line);border-radius:calc(12px*var(--s))}
 .me-x:hover{border-color:#9b978e}
-.me-photo{position:relative;width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:4px;
+.me-card .ic{width:calc(18px*var(--s));height:calc(18px*var(--s))}
+.me-photo{position:relative;width:calc(96px*var(--s));height:calc(96px*var(--s));border-radius:50%;overflow:hidden;margin-bottom:calc(4px*var(--s));
   background:linear-gradient(145deg,#dedbd2,#bdb9ae);border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--copper),0 10px 26px rgba(20,20,19,.16)}
 .me-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.me-name{font-size:2rem;font-weight:650;letter-spacing:-.06em;line-height:1}
-.me-title{font-weight:650;font-size:.9rem;letter-spacing:-.02em;color:var(--copper)}
+.me-card .eyebrow{font-size:calc(10px*var(--s))}
+.me-name{font-size:calc(2rem*var(--s));font-weight:650;letter-spacing:-.06em;line-height:1}
+.me-title{font-weight:650;font-size:calc(.9rem*var(--s));letter-spacing:-.02em;color:var(--copper)}
 .me-title span{color:var(--muted);font-weight:400}
-.me-sum{color:#55534d;font-size:.88rem;line-height:1.5}
-.me-facts{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;margin:4px 0}
-.me-facts div{padding:10px 12px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px}
-.me-facts dt{font:9.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.me-facts dd{margin:3px 0 0;font-weight:600;font-size:.82rem;letter-spacing:-.01em}
-.me-card .btns{width:100%}
-.me-card .btn{flex:1}
+.me-sum{color:#55534d;font-size:calc(.88rem*var(--s));line-height:1.5}
+.me-facts{display:grid;grid-template-columns:1fr 1fr;gap:calc(6px*var(--s));width:100%;margin:calc(4px*var(--s)) 0}
+.me-facts div{padding:calc(10px*var(--s)) calc(12px*var(--s));background:var(--paper-2);border:1px solid var(--line);border-radius:calc(14px*var(--s))}
+.me-facts dt{font:calc(9.5px*var(--s)) var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.me-facts dd{margin:calc(3px*var(--s)) 0 0;font-weight:600;font-size:calc(.82rem*var(--s));letter-spacing:-.01em}
+.me-card .btns{width:100%;gap:calc(8px*var(--s))}
+.me-card .btn{flex:1;min-height:calc(48px*var(--s));padding:0 calc(20px*var(--s));font-size:calc(.9rem*var(--s));border-radius:calc(14px*var(--s))}
+/* phones: no coloured ring on the photo (matches the corner avatar) */
+@media(max-width:680px){.me-photo{box-shadow:0 10px 26px rgba(20,20,19,.16)}}
 
 
 /* ---------- Tablets: the big photo is tappable (js/profile-pop.js) ---------- */

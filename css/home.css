@@ -105,9 +105,10 @@ h1 .c{color:var(--copper)}
 .bottom-links{display:flex;gap:17px}
 .bottom-links a:hover{color:var(--ink)}
 
-/* Intro "…" expander (js/lead.js). Desktop/tablet: full text, no button. Phones: short line + "…". */
+/* Intro "…" expander (js/lead.js). Desktop/upright tablet: full text, no button. Phones, and sideways
+   touch tablets on shorter screens (to make room for the big photo): short line + "…". */
 .lead-more{display:none}
-@media(max-width:680px){
+@media(max-width:680px),(pointer:coarse) and (min-width:981px) and (max-height:820px){
   .lead{overflow:hidden}                     /* clips the text while its height animates */
   .lead:not(.open) .lead-rest{display:none}
   .lead.open .lead-rest{animation:leadIn .5s cubic-bezier(.2,.7,.2,1) both}

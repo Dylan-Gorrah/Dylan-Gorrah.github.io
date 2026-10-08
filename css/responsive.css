@@ -95,15 +95,12 @@
   .tb b{font-size:.6rem}
 }
 
-/* Tablets (touch screens): no hover zoom there, so the photo is simply shown at its big "hovered" size,
-   as large as each layout fits without pushing the name out of the card (measured at iPad / Galaxy Tab sizes).
-   Tapping it opens the summary (js/profile-pop.js). */
+/* Tablets (touch screens): no hover there, so the photo is shown at exactly the size it zooms to on hover
+   with a mouse (2x the normal size). Sideways, the intro collapses to one line + "…" (css/home.css) to make room.
+   Tapping the photo opens the summary (js/profile-pop.js). */
 @media(pointer:coarse) and (min-width:681px) and (max-width:980px){
-  .photo{width:clamp(200px,30vw,260px)}               /* upright: ~225px iPad, ~235-245px Galaxy Tab */
+  .photo{width:calc(2*clamp(112px,16vw,150px))}        /* upright: ~240px iPad, ~250px Galaxy Tab */
 }
 @media(pointer:coarse) and (min-width:981px){
-  .photo{width:clamp(120px,min(18vw,20vh),240px)}     /* sideways: ~135-145px (short screens limit it) */
-}
-@media(pointer:coarse) and (min-width:981px) and (min-height:850px){
-  .photo{width:clamp(120px,min(18vw,26vh),240px)}     /* sideways on tall tablets (iPad Pro): ~240px */
+  .photo{width:calc(2*clamp(84px,min(11vw,15vh),165px))}   /* sideways: ~200-210px, ~280px on tall tablets */
 }
