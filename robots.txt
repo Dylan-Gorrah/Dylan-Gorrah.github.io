@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Doc/
+
+Sitemap: https://dylan-gorrah.github.io/sitemap.xml

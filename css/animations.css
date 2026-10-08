@@ -1,0 +1,25 @@
+/* animations.css: every @keyframes + the reduced-motion override. Loaded last.
+   Docs: Doc/Elements/Animations.md */
+@keyframes tick{to{transform:translateX(-50%)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(176,85,47,.45)}70%,100%{box-shadow:0 0 0 9px rgba(176,85,47,0)}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes up{to{transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes nudge{0%,100%{transform:translateY(0)}40%{transform:translateY(-4px)}}
+@keyframes type{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@keyframes sweep{from{transform:translateX(-100%)}to{transform:translateX(340%)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes g1{0%,38%{opacity:1;transform:none}50%,88%{opacity:0;transform:translateY(-16px)}100%{opacity:1;transform:none}}
+@keyframes g2{0%,38%{opacity:0;transform:translateY(16px)}50%,88%{opacity:1;transform:none}100%{opacity:0;transform:translateY(16px)}}
+/* Profile popup avatar (css/profile-pop.css) */
+@keyframes avatarHint{0%{box-shadow:0 0 0 1.5px var(--copper),0 0 0 0 rgba(176,85,47,.45),0 6px 16px rgba(20,20,19,.16)}70%,100%{box-shadow:0 0 0 1.5px var(--copper),0 0 0 10px rgba(176,85,47,0),0 6px 16px rgba(20,20,19,.16)}}
+/* CV button (css/cv-button.css) */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+  h1 .l>span{transform:none}
+  .greet .g2{display:none}
+}

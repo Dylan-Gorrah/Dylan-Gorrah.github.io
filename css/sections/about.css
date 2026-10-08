@@ -1,0 +1,19 @@
+/* About view. Docs: Doc/Elements/Sections/About.md */
+.term{background:var(--dark);color:#cfcfc6;border-radius:22px;padding:16px 18px;font:12.5px/1.9 var(--mono);box-shadow:var(--shadow);border:1px solid #272722}
+.term .tb2{display:flex;gap:6px;margin-bottom:10px}
+.term .tb2 i{width:8px;height:8px;border-radius:50%;background:#3a3a34}
+.cmd{color:#7f7e76}
+.ln.ok::before{content:"\2713\00a0";color:var(--green)}
+.ln.end{color:var(--green);font-weight:600}
+.ln.end::after{content:"";display:inline-block;width:8px;height:15px;margin-left:6px;vertical-align:-2px;background:var(--green);animation:blink 1s steps(2) infinite}
+.view.play .ln{animation:type .5s steps(20) both;animation-delay:calc(var(--k)*.3s + .6s)}
+.minis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini{padding:18px}
+.mini .value{margin-top:16px;font-size:clamp(2rem,6vw,2.8rem);line-height:1;letter-spacing:-.08em;font-weight:650;font-variant-numeric:tabular-nums}
+.mini h3{margin:10px 0 4px;font-size:1rem;letter-spacing:-.035em}
+.mini p{color:var(--muted);font-size:.76rem;line-height:1.45}
+.facts{padding:4px 18px}
+.facts div{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.facts div:last-child{border:0}
+.facts dt{font:10.5px var(--mono);color:var(--muted);padding-top:3px;letter-spacing:.1em;text-transform:uppercase}
+.facts dd{margin:0;text-align:right;font-weight:550;font-size:.9rem}

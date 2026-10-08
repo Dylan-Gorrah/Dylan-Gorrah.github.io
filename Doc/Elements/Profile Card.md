@@ -1,0 +1,28 @@
+# Profile Card
+**Markup:** `<section class="left">` in `index.html` · **Styles:** `.left` … `.identity` in `css/home.css` · Back to [[Home Screen]]
+
+The big white card on the left of home. It's all plain text in `index.html`, with no script except the photo loader.
+
+| Part | Class | Content |
+|---|---|---|
+| Eyebrow | `.role` | "Hello, I'm" / "Open to QA roles" |
+| Photo | `.photo` | Circle placeholder, swapped for your photo. Hidden on phones, where the [[Profile Popup]] avatar beside the name replaces it |
+| Name | `h1` | "Dylan Gorrah". Each word is in `.l` with `--i` so they slide up one after the other |
+| Title | `.title` | "Software Developer / QA & Test Automation" (copper) |
+| Intro | `.lead` | Short bio paragraph |
+| Pills | `.facts-row` | 3 small tech pills |
+| Footer | `.identity` | Location, diploma, "Graduating Nov 2026" |
+
+## Photo
+**Hover zoom (computers):** on screens with a mouse or trackpad (wider than 680px), hovering the photo makes it grow to **2×** from its top-right corner with the site's easing (`cubic-bezier(.2,.7,.2,1)`), with a copper ring and a deeper shadow, then it shrinks back when the mouse leaves.
+- **Where:** `css/home.css`, under the `.photo` rules. Change `scale:2` there to make it bigger or smaller.
+- **How:** it uses the separate CSS `scale` property so it doesn't fight the floating `bob` animation, which uses `transform`.
+- It only works once the real photo has loaded (`.photo.has`).
+
+The photo is **`img/dylan-gorrah.jpg`**: a 600×600 square crop centred on the face, about 70 KB. The file is named after you so it ranks in image search; use hyphens, not spaces.
+The `<img>` tag tries to load it: if it loads, the "PROFILE PHOTO" placeholder hides; if it's missing, the image removes itself and the grey silhouette stays.
+
+**To change it:** replace `img/dylan-gorrah.jpg` with another **square** image, keeping the same name. The circle crops the corners, so leave some space around your head. Keep it small (~600px), because it's only shown at up to 165px.
+
+## Also update
+The `<head>` has a `<script type="application/ld+json">` block (info for search engines) and `<meta>` description tags that repeat your name, title, email and links. Keep them in sync if those change. See [[SEO]].

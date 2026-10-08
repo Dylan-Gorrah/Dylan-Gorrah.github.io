@@ -1,0 +1,5 @@
+# local only
+backup/
+.vscode/
+# Obsidian's per-device window layout (changes every time the vault is opened)
+Doc/.obsidian/workspace*.json

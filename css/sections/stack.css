@@ -1,0 +1,15 @@
+/* Stack view. Docs: Doc/Elements/Sections/Stack.md */
+.fil{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
+.fil::-webkit-scrollbar{display:none}
+.fil button{flex:none;min-height:42px;padding:0 16px;background:transparent;border:1px solid var(--line);border-radius:999px;font-size:.84rem;font-weight:550;color:var(--muted);transition:.22s ease}
+.fil button:hover{border-color:#9b978e;color:var(--ink)}
+.fil button[aria-pressed="true"]{background:var(--ink);color:#faf8f0;border-color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{min-height:42px;padding:0 16px;background:var(--card);border:1px solid var(--line);border-radius:999px;font:12px var(--mono);animation:pop .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--c)*24ms);transition:border-color .2s,background .2s,color .2s,transform .2s}
+.chips button:hover{border-color:#9b978e}
+.chips button:active{transform:scale(.95)}
+.chips button.t{color:var(--copper)}
+.chips button[aria-pressed="true"]{background:var(--dark);color:var(--green);border-color:rgba(183,216,107,.5)}
+.used{background:var(--dark);color:#f5f2ea;border-radius:22px;padding:18px 20px;min-height:92px;border:1px solid #272722;box-shadow:var(--shadow)}
+.used small{display:block;font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#7f7e76}
+.used b{display:block;margin-top:8px;font-weight:600;font-size:1.1rem;letter-spacing:-.03em;color:#f5f2ea}

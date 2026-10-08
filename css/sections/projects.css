@@ -1,0 +1,17 @@
+/* Projects view (accordion cards). Docs: Doc/Elements/Sections/Projects.md */
+.pcs{display:grid;gap:10px}
+.pc{transition:border-color .3s}
+.pc.open{border-color:rgba(176,85,47,.5)}
+.ph{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:72px;padding:14px 18px;background:none;border:0;text-align:left;position:relative;z-index:1}
+.ph h3{font-size:1.15rem;font-weight:650;letter-spacing:-.04em;line-height:1.2}
+.ph small{display:block;margin-top:4px;font:10.5px/1.45 var(--mono);color:var(--muted)}
+.ph::after{content:"+";font:400 24px var(--mono);color:var(--copper);transition:transform .3s}
+.pc.open .ph::after{transform:rotate(45deg)}
+.pb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.7,.2,1);position:relative;z-index:1}
+.pc.open .pb{grid-template-rows:1fr}
+.pb>div{overflow:hidden}
+.pin{padding:0 18px 10px;display:grid;gap:12px}
+.pin p{color:#55534d;font-size:.9rem}
+.go{display:flex;justify-content:space-between;align-items:center;min-height:52px;padding:0 18px;border-top:1px solid var(--line);font-size:.85rem;font-weight:550;transition:background .2s,color .2s}
+a.go:hover{background:var(--ink);color:#faf8f0}
+.go.off{color:var(--muted)}

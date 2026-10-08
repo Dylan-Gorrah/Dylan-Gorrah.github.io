@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "Dylan Gorrah | Software Developer & QA",
+  "short_name": "Dylan G",
+  "description": "Dylan Gorrah: software developer moving into QA and test automation. Bloemfontein, South Africa.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "background_color": "#E6E3DB",
+  "theme_color": "#E6E3DB",
+  "icons": [
+    { "src": "img/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "img/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "img/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

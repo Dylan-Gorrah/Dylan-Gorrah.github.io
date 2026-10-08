@@ -1,0 +1,12 @@
+/* Languages view. Docs: Doc/Elements/Sections/Languages.md */
+.greet{display:grid;font-size:clamp(4rem,18vw,8.5rem);font-weight:650;letter-spacing:-.08em;line-height:.95;padding-bottom:.06em}
+.greet span{grid-area:1/1}
+.greet .g1{animation:g1 6s ease-in-out infinite}
+.greet .g2{animation:g2 6s ease-in-out infinite;color:var(--copper)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lang{padding:18px}
+.lang b{display:block;font-size:1.3rem;font-weight:650;letter-spacing:-.04em}
+.lang small{display:block;margin-top:4px;font:10.5px var(--mono);color:var(--copper);letter-spacing:.14em;text-transform:uppercase}
+.lang p{margin-top:8px;color:var(--muted);font-size:.84rem}
+.code-l{display:flex;flex-wrap:wrap;gap:8px}
+.code-l span{padding:12px 20px;background:var(--card);border:1px solid var(--line);border-radius:999px;font-size:1.05rem;font-weight:650;letter-spacing:-.03em;animation:pop .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--c)*60ms + .6s)}

@@ -1,0 +1,16 @@
+/* Tutoring view. Docs: Doc/Elements/Sections/Tutoring.md */
+.meter{padding:22px;display:grid;gap:12px}
+.meter-n{display:flex;align-items:baseline;gap:14px;font-variant-numeric:tabular-nums}
+.meter-n s{font-size:1.3rem;color:var(--muted);text-decoration:none;font-weight:550}
+.meter-n b{font-size:clamp(3.6rem,15vw,6rem);font-weight:650;letter-spacing:-.08em;line-height:.9}
+.meter-n i{font-style:normal;color:var(--copper)}
+.meter-bar{position:relative;height:10px;background:var(--paper);border-radius:999px;overflow:hidden}
+.meter-bar i{position:absolute;top:0;bottom:0;left:0;transform-origin:left}
+.meter-bar .a{width:65%;background:#9b978e}
+.meter-bar .b{left:65%;width:20%;background:var(--copper)}
+.view.play .meter-bar i{animation:grow 1.3s cubic-bezier(.2,.7,.2,1) both;animation-delay:.6s}
+.view.play .meter-bar .b{animation-delay:1.3s}
+.meter-l{display:flex;justify-content:space-between;font:10.5px var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.meter-l b{font-weight:500;color:var(--copper)}
+.award{display:flex;align-items:center;gap:12px;padding:16px 18px;background:var(--dark);color:#f5f2ea;border-radius:22px;font-weight:550;border:1px solid #272722}
+.award .ic{color:var(--green);width:22px;height:22px}
