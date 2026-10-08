@@ -21,6 +21,10 @@ On phones (≤ 680px) the intro shows just **"Software developer moving into QA"
 - It shows on **all** phone heights. Short phones used to hide the intro entirely, which made it vanish on an iPhone 11 in Safari (~715px tall with the browser bars); that rule was dropped because the collapsed intro is just one line (see [[Responsive Layout]]).
 
 ## Photo
+**Tablets (iPad, Galaxy Tab S7 / A9…):**
+- **Size:** upright, the photo scales with the screen (`clamp(112px,16vw,150px)` in `responsive.css`): ~120px on an iPad, ~128px on a Tab S7. Sideways, touch screens get `clamp(120px,min(13vw,20vh),180px)` (~130–175px) instead of the desktop size, which was only ~100px there.
+- **Tap to open:** on touch screens bigger than a phone, tapping the photo opens the [[Profile Popup]] summary, growing out of the photo and shrinking back into it. The script makes the photo a proper button (`role=button`, focusable, Enter/Space) only on touch screens; computers with a mouse keep it as an image with the hover zoom.
+
 **Hover zoom (computers):** on screens with a mouse or trackpad (wider than 680px), hovering the photo makes it grow to **2×** from its top-right corner with the site's easing (`cubic-bezier(.2,.7,.2,1)`), with a copper ring and a deeper shadow, then it shrinks back when the mouse leaves.
 - **Where:** `css/home.css`, under the `.photo` rules. Change `scale:2` there to make it bigger or smaller.
 - **How:** it uses the separate CSS `scale` property so it doesn't fight the floating `bob` animation, which uses `transform`.

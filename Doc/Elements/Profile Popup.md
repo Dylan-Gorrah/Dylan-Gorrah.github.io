@@ -6,6 +6,8 @@
 - On short phones the "Hello, I'm" row is hidden and the name sits beside the photo, so `.name-row` gets `min-height:68px`; the title line then always starts below the photo.
 - Checked at 320, 360, 375, 414 and 430px wide: no overlap at any size. Tapping it grows a quick-summary card out of the photo, the same circle-reveal as the [[View System|views]].
 
+**Tablets:** tapping the big profile photo opens the same popup. It grows from whatever was tapped (`opener` in `js/profile-pop.js`). See [[Profile Card]].
+
 ## Why it exists
 On phones, short screens hide the photo row (see [[Responsive Layout]]), and most real phones count as short once the browser bars are showing. The avatar beside the name is always visible, so phones always see your face. The big `.photo` is hidden on phones so it isn't shown twice.
 

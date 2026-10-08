@@ -7,6 +7,7 @@ Adapts the [[Home Screen]] to different screens. Home is meant to fit in **one s
 | Breakpoint | Effect |
 |---|---|
 | ≤ 980px wide | Profile card stacks above the skill graph; graph subtitle hidden |
+| touch + ≥ 981px (tablet sideways) | Bigger profile photo (~130–175px) |
 | 681–980px (tablet) | Page may scroll; tile subtitles and fact pills hidden; graph has a fixed height |
 | ≤ 680px (phone) | Big photo swapped for a small avatar beside the name ([[Profile Popup]]); tiles become icon + label only; radar bars, identity and facts hidden; name on one line |
 | ≤ 680px wide **and** ≤ 760px tall | Also hides the photo row and the graph title (the one-line intro stays; most phones in Safari fall in this range, e.g. iPhone 11 ≈ 715px) |

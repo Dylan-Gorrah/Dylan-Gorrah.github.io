@@ -11,7 +11,10 @@
   function buzz(name){ if(S.haptics) S.haptics.play(name); }
   var uiClose=false;
 
-  function origin(){ var r=btn.getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2}; }
+  /* what was tapped to open it: the phone avatar, or the big photo on tablets. The card grows out
+     of it, shrinks back into it, and focus returns to it. */
+  var opener=btn;
+  function origin(){ var r=opener.getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2}; }
   function clip(o,r){ return 'circle('+r+'px at '+o.x+'px '+o.y+'px)'; }
   var card=$('.me-card',pop);
   function stopAnims(){ if(card.getAnimations) card.getAnimations().forEach(function(a){ a.cancel(); }); }
@@ -23,7 +26,8 @@
 
   /* Two layers move separately: the background blurs in/out (CSS transition on .on, see
      profile-pop.css) while the card grows out of / shrinks back into the avatar. */
-  function open(){
+  function open(from){
+    if(!isOpen) opener=(from&&from.nodeType===1)?from:btn;
     if(isOpen) return; isOpen=true; ++token;
     buzz('popOpen');      /* tap, then a tick as each row rolls in */
     try{ history.pushState({pop:1},''); }catch(e){}   /* so the phone's Back gesture closes the card */
@@ -41,13 +45,26 @@
     isOpen=false; var tk=++token;
     btn.setAttribute('aria-expanded','false');
     pop.classList.remove('on');   /* starts the background un-blurring (0.5s) */
-    var done=function(){ if(tk!==token) return; stopAnims(); pop.hidden=true; pop.classList.remove('play'); btn.focus({preventScroll:true}); };
+    var done=function(){ if(tk!==token) return; stopAnims(); pop.hidden=true; pop.classList.remove('play'); opener.focus({preventScroll:true}); };
     if(rm){ done(); return; }
     if(card.animate){ var c=cardClip(); card.animate([{clipPath:clip(c.p,c.far)},{clipPath:clip(c.p,0)}],{duration:S.motion.popClose.ms,easing:S.motion.popClose.css,fill:'forwards'}); }
     setTimeout(done,500);         /* hide once the blur has fully faded */
   }
 
-  btn.addEventListener('click',open);
+  btn.addEventListener('click',function(){ open(btn); });
+
+  /* Tablets (touch screens bigger than a phone): the big profile photo opens the summary too.
+     Mouse/trackpad screens keep the hover zoom instead (css/home.css). */
+  var photo=$('.photo'), touch=window.matchMedia&&matchMedia('(pointer: coarse)');
+  if(photo&&touch){
+    var armPhoto=function(){
+      if(touch.matches){ photo.setAttribute('role','button'); photo.tabIndex=0; photo.setAttribute('aria-label','Quick summary about Dylan'); photo.setAttribute('aria-haspopup','dialog'); }
+      else { photo.setAttribute('role','img'); photo.removeAttribute('tabindex'); photo.setAttribute('aria-label','Profile photo'); photo.removeAttribute('aria-haspopup'); }
+    };
+    armPhoto(); if(touch.addEventListener) touch.addEventListener('change',armPhoto);
+    photo.addEventListener('click',function(){ if(touch.matches) open(photo); });
+    photo.addEventListener('keydown',function(e){ if(touch.matches&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); open(photo); } });
+  }
   window.addEventListener('popstate',function(){ if(isOpen&&!(history.state&&history.state.pop)) close(true); });
   $$('[data-close]',pop).forEach(function(e){ e.addEventListener('click',function(){ close(); }); });
   document.addEventListener('keydown',function(e){

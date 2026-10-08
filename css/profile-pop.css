@@ -52,3 +52,9 @@
 .me-card .btns{width:100%}
 .me-card .btn{flex:1}
 
+
+/* ---------- Tablets: the big photo is tappable (js/profile-pop.js) ---------- */
+@media(pointer:coarse){
+  .photo[role=button]{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:scale .2s ease}
+  .photo[role=button]:active{scale:.95}
+}
