@@ -29,7 +29,7 @@
     try{ history.pushState({pop:1},''); }catch(e){}   /* so the phone's Back gesture closes the card */
     stopAnims(); pop.hidden=false; pop.classList.remove('play','on'); void pop.offsetWidth; pop.classList.add('play','on');
     btn.setAttribute('aria-expanded','true');
-    if(!rm&&card.animate){ var c=cardClip(); card.animate([{clipPath:clip(c.p,0)},{clipPath:clip(c.p,c.far)}],{duration:520,easing:'cubic-bezier(.2,.7,.2,1)'}); }
+    if(!rm&&card.animate){ var c=cardClip(); card.animate([{clipPath:clip(c.p,0)},{clipPath:clip(c.p,c.far)}],{duration:S.motion.popOpen.ms,easing:S.motion.popOpen.css}); }
     $('.me-x',pop).focus({preventScroll:true});
   }
   function close(viaHistory){
@@ -43,7 +43,7 @@
     pop.classList.remove('on');   /* starts the background un-blurring (0.5s) */
     var done=function(){ if(tk!==token) return; stopAnims(); pop.hidden=true; pop.classList.remove('play'); btn.focus({preventScroll:true}); };
     if(rm){ done(); return; }
-    if(card.animate){ var c=cardClip(); card.animate([{clipPath:clip(c.p,c.far)},{clipPath:clip(c.p,0)}],{duration:380,easing:'cubic-bezier(.5,0,.8,.4)',fill:'forwards'}); }
+    if(card.animate){ var c=cardClip(); card.animate([{clipPath:clip(c.p,c.far)},{clipPath:clip(c.p,0)}],{duration:S.motion.popClose.ms,easing:S.motion.popClose.css,fill:'forwards'}); }
     setTimeout(done,500);         /* hide once the blur has fully faded */
   }
 

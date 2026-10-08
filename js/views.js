@@ -56,7 +56,7 @@
     $('.vbody',v).scrollTop=0; cur=id; document.title=NAMES[id]+' · Dylan Gorrah';
     announce(id);
     var done=function(){ if(tk!==token) return; $$('.view').forEach(function(x){ if(x!==v) hideNow(x); }); };
-    if(!rm&&v.animate){ v.animate([{clipPath:clip(o,0)},{clipPath:clip(o,reach(o))}],{duration:560,easing:'cubic-bezier(.2,.7,.2,1)'}).onfinish=done; } else done();
+    if(!rm&&v.animate){ v.animate([{clipPath:clip(o,0)},{clipPath:clip(o,reach(o))}],{duration:S.motion.viewOpen.ms,easing:S.motion.viewOpen.css}).onfinish=done; } else done();
     var b=$('.back',v); if(b) b.focus({preventScroll:true});
     if(id==='stack'&&S.renderChips) S.renderChips();
     countUp(v);
@@ -73,7 +73,7 @@
     cur=null; document.title='Dylan Gorrah | Software Developer & QA Tester, Bloemfontein';
     announce(null);
     var done=function(){ if(tk!==token) return; hideNow(v); if(t) t.focus({preventScroll:true}); };
-    if(!rm&&v.animate){ v.animate([{clipPath:clip(o,reach(o))},{clipPath:clip(o,0)}],{duration:420,easing:'cubic-bezier(.5,0,.8,.4)',fill:'forwards'}).onfinish=done; } else done();
+    if(!rm&&v.animate){ v.animate([{clipPath:clip(o,reach(o))},{clipPath:clip(o,0)}],{duration:S.motion.viewClose.ms,easing:S.motion.viewClose.css,fill:'forwards'}).onfinish=done; } else done();
   }
 
   $$('.tile').forEach(function(t){ t.addEventListener('click',function(){ go(t.dataset.go,center(t)); }); });

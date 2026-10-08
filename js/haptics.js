@@ -11,21 +11,53 @@
    - Desktop: nothing. */
 window.Site = window.Site || {};
 (function(S){
-  /* ---------- Patterns: [time in ms after the tap, buzz length in ms (Android only)] ----------
-     Times are matched to the CSS/JS animations, so the feel follows the motion. */
+  /* ---------- The wheel ----------
+     A section opening should feel like a wheel spinning through detents until the motion stops.
+     The gap between ticks follows the animation's SPEED at that moment, read from its own easing
+     curve (Site.motion in utils.js): while the circle grows fast the ticks come close together, and
+     as it slows they spread out, like a wheel winding down, until a firmer "click" the moment it
+     stops. Closing (ease-in) runs the other way: slow and sparse, then quickening into the tile.
+     Rules from Android's haptic guidelines: ticks are crisp (10-20ms) and never closer than GAP,
+     because the motor keeps ringing 20-50ms after each pulse and closer ticks smear into a buzz.
+     MAXGAP keeps the wheel turning (no dead air) right up to the stop.
+     (Pulse lengths only matter on Android; iPhone ticks are all the same.) */
+  var GAP=45, MAXGAP=130;
+  /* progress (0-1) of a cubic-bezier easing at time x (0-1) */
+  function ease(e,x){
+    var lo=0, hi=1, s=.5;
+    for(var i=0;i<28;i++){ s=(lo+hi)/2; var bx=3*e[0]*s*(1-s)*(1-s)+3*e[2]*s*s*(1-s)+s*s*s; if(bx<x) lo=s; else hi=s; }
+    return 3*e[1]*s*(1-s)*(1-s)+3*e[3]*s*s*(1-s)+s*s*s;
+  }
+  function speed(e,x){ var h=.01, a=Math.max(0,x-h), b=Math.min(1,x+h); return (ease(e,b)-ease(e,a))/(b-a); }
+  /* m = a Site.motion entry; gap/maxGap = closest / widest tick spacing; tap = first pulse length */
+  function wheel(m,gap,maxGap,tap){
+    var peak=0; for(var x=0;x<=1;x+=.02) peak=Math.max(peak,speed(m.ease,x));
+    var out=[[0,tap]], t=0;
+    while(true){
+      /* spacing from the speed in the MIDDLE of the coming gap (read once, then refined) */
+      var f=function(x){ var v=speed(m.ease,Math.min(1,x/m.ms))||.0001; return Math.min(maxGap,Math.max(gap,gap*peak/v)); };
+      var step=f(t+f(t)/2);
+      t+=step;
+      if(m.ms-t<gap){ break; }                        /* too close to the end: let the final click take it */
+      var p=t/m.ms; out.push([Math.round(t),Math.round(9+4*p)]);   /* pulses ramp 9 → 13ms toward the snap */
+    }
+    /* a slowing wheel never speeds up at the end: if the final click would come much sooner than
+       the last gap, drop the last notch so the spacing keeps widening into the stop */
+    var n=out.length;
+    if(speed(m.ease,1)<speed(m.ease,0)&&n>2&&(m.ms-out[n-1][0])<.8*(out[n-1][0]-out[n-2][0])) out.pop();
+    out.push([m.ms,18]);                              /* the click as it settles, exactly when the motion stops */
+    return out;
+  }
+
+  /* ---------- Patterns: [time in ms after the tap, pulse length in ms (Android only)] ---------- */
+  var M=S.motion||{};
   var P={
     tap:      [[0,12]],
-    /* Profile popup opening (profile-pop.css): the card's rows rise one by one, starting at
-       180ms and 55ms apart (.me-card>* animation-delay), so a light tick lands as each row "rolls" in. */
-    popOpen:  [[0,14],[180,9],[235,9],[290,8],[345,8],[400,8],[455,8],[510,8],[565,8]],
-    /* Popup closing: tap, then a firmer tick as the card docks back into the avatar (380ms) */
-    popClose: [[0,10],[380,14]],
-    /* Views (views.js): tile tap, then a tick when the circle finishes growing (560ms) */
-    viewOpen: [[0,10],[560,9]],
-    /* Prev/next/swipe between views */
-    viewStep: [[0,8]],
-    /* Back home: tap, then a tick as the view shrinks into its tile (420ms) */
-    viewClose:[[0,8],[420,12]]
+    viewOpen: M.viewOpen ? wheel(M.viewOpen,GAP,MAXGAP,14) : [[0,12]],   /* tile → view: the full wheel */
+    viewStep: M.viewOpen ? wheel(M.viewOpen,70,180,10) : [[0,10]],    /* prev/next/swipe: same motion, fewer notches (it's frequent) */
+    viewClose:M.viewClose? wheel(M.viewClose,GAP,MAXGAP,10) : [[0,10]], /* view → home: winds in, clicks shut */
+    popOpen:  M.popOpen  ? wheel(M.popOpen,GAP,MAXGAP,14)  : [[0,12]],  /* avatar → profile card */
+    popClose: M.popClose ? wheel(M.popClose,GAP,MAXGAP,10) : [[0,10]]   /* card → avatar */
   };
 
   var ua=navigator.userAgent;
