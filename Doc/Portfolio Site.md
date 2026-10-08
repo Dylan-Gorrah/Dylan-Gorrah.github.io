@@ -99,4 +99,5 @@ Profile/
 ## Maintenance
 - **[[SEO]]**: the hidden `<head>` tags and the structured fact sheet that Google, Bing and Copilot read about you, plus what to do once the site has a domain.
 - **[[Common Edits]]**: recipes for adding a project, changing a score, adding a view, and so on.
+- **[[Future Features]]**: planned ideas not built yet (next up: a digital business card shared via AirDrop / the share sheet).
 - **[[Known Quirks]]**: surprising things worth knowing before you change the code, plus a log of what the cleanup fixed.
