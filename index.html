@@ -29,10 +29,11 @@
 <meta property="profile:first_name" content="Dylan">
 <meta property="profile:last_name" content="Gorrah">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23141413'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' text-anchor='middle' fill='%23FBFAF6'%3EDG%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap">
+<!-- Real image file (192px, a multiple of 48) so Google can show it beside the result; it ignores data: icons. -->
+<link rel="icon" type="image/png" sizes="192x192" href="img/icons/icon-192.png">
+<!-- Inter font, self-hosted (fonts/inter-latin.woff2, @font-face in css/base.css). Preloaded so text
+     doesn't wait for the stylesheet to discover it. crossorigin is required for font preloads. -->
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Structured data: a fact sheet about you for search engines and AI assistants (Google, Bing/Copilot).
      Only put things here that are also true on the visible page. Docs: Doc/Elements/SEO.md -->
 <script type="application/ld+json">
@@ -92,7 +93,13 @@
 <link rel="stylesheet" href="css/cv-button.css">
 <link rel="stylesheet" href="css/profile-pop.css">
 <link rel="stylesheet" href="css/safe-area.css">
+<link rel="stylesheet" href="css/intro.css">
 <link rel="stylesheet" href="css/animations.css">
+<!-- Loading animation switch: hides the home blocks before the first paint so js/intro.js can draw
+     them in. Skipped for reduced motion, for direct #view links, and after the first time in a
+     browser tab (reloads and coming back are instant). The 5s timer is a safety net:
+     if the scripts never run, everything still shows. Docs: Doc/Elements/Intro Animation.md -->
+<script>(function(d){try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!location.hash&&!sessionStorage.getItem('introSeen')){d.classList.add('intro');setTimeout(function(){d.classList.add('intro-done')},5000);}}catch(e){}})(document.documentElement)</script>
 </head>
 <body>
 <div class="grain"></div>
@@ -127,13 +134,15 @@
       <div>
         <div class="profile-top">
           <div class="role"><div class="eyebrow">Hello, I'm</div><div class="eyebrow" style="margin-top:6px;color:var(--copper)">Open to QA roles</div></div>
-          <!-- Photo: img/dylan-gorrah.jpg (square crop, named for image search). If it is missing, the grey placeholder shows instead. -->
-          <div class="photo" role="img" aria-label="Profile photo"><img src="img/dylan-gorrah.jpg" alt="Dylan Gorrah, software developer and QA tester in Bloemfontein" width="600" height="600" onload="this.parentNode.classList.add('has')" onerror="this.remove()"></div>
+          <!-- Photo: img/dylan-gorrah.jpg (square crop, named for image search) + WebP copies the browser picks first:
+               -600.webp here (phones get the small -240.webp, as the big photo is hidden there anyway).
+               If you replace the photo, regenerate both .webp files too. Missing photo = grey placeholder. -->
+          <div class="photo" role="img" aria-label="Profile photo"><picture><source media="(max-width:680px)" srcset="img/dylan-gorrah-240.webp" type="image/webp"><source srcset="img/dylan-gorrah-600.webp" type="image/webp"><img src="img/dylan-gorrah.jpg" alt="Dylan Gorrah, software developer and QA tester in Bloemfontein" width="600" height="600" fetchpriority="high" onload="this.closest('.photo').classList.add('has')" onerror="this.remove()"></picture></div>
         </div>
         <!-- Name row. On phones a small photo (.avatar) sits beside the name; tapping it opens the
              profile popup below. Desktop/tablet hide the avatar. Docs: Doc/Elements/Profile Popup.md -->
         <div class="name-row">
-          <button class="avatar" type="button" id="meOpen" aria-label="Quick summary about Dylan" aria-haspopup="dialog" aria-controls="mePop"><img src="img/dylan-gorrah.jpg" alt="" onerror="this.remove()"><span>DG</span></button>
+          <button class="avatar" type="button" id="meOpen" aria-label="Quick summary about Dylan" aria-haspopup="dialog" aria-controls="mePop"><picture><source srcset="img/dylan-gorrah-240.webp" type="image/webp"><img src="img/dylan-gorrah.jpg" alt="Dylan Gorrah, software developer and QA tester" width="600" height="600" onerror="this.remove()"></picture><span>DG</span></button>
           <h1><span class="l" style="--i:0"><span>Dylan</span></span> <span class="l" style="--i:1"><span>Gorrah</span></span></h1>
         </div>
         <p class="title">Software Developer <span>/</span> QA &amp; Test Automation</p>
@@ -186,6 +195,8 @@
     </div>
   </footer>
 </div>
+<!-- Loading animation: runs right after the home markup, before the other scripts load. Docs: Doc/Elements/Intro Animation.md -->
+<script src="js/intro.js"></script>
 
 <!-- CV button: small flat button in the middle of the footer. Hidden until the visitor has been idle on home for 5s.
      Styles: css/cv-button.css, behaviour: js/cv-button.js. Docs: Doc/Elements/CV Button.md
@@ -200,7 +211,7 @@
   <div class="me-back" data-close></div>
   <article class="me-card card">
     <button class="me-x" type="button" aria-label="Close" data-close><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    <div class="me-photo"><img src="img/dylan-gorrah.jpg" alt="Dylan Gorrah" onerror="this.remove()"></div>
+    <div class="me-photo"><picture><source media="(max-width:680px)" srcset="img/dylan-gorrah-240.webp" type="image/webp"><source srcset="img/dylan-gorrah-600.webp" type="image/webp"><img src="img/dylan-gorrah.jpg" alt="Dylan Gorrah" onerror="this.remove()"></picture></div>
     <p class="eyebrow" style="color:var(--copper)">Open to QA roles</p>
     <h2 class="me-name" id="meName">Dylan Gorrah</h2>
     <p class="me-title">Software Developer <span>/</span> QA &amp; Test Automation</p>

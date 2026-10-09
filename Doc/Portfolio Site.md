@@ -16,9 +16,11 @@ Dylan Gorrah's personal portfolio. It's a single page that looks and behaves lik
 Profile/
 ├─ index.html            ← all page markup (home + 8 views)
 ├─ img/
-│  ├─ dylan-gorrah.jpg   ← square photo shown in the profile circle (600×600)
+│  ├─ dylan-gorrah.jpg   ← square photo (600×600): fallback + Google / share previews
+│  ├─ dylan-gorrah-600.webp / -240.webp ← smaller copies browsers actually load (big / phone)
 │  └─ icons/             ← DG app icons for the home screen
 ├─ manifest.webmanifest ← "Add to Home Screen" app settings (name, icons, full screen)
+├─ fonts/inter-latin.woff2 ← the Inter font, self-hosted (@font-face in css/base.css)
 ├─ CV/                  ← the CV PDF the Download CV button serves
 ├─ css/
 │  ├─ base.css           ← colours, fonts, reset, shared helpers
@@ -67,6 +69,7 @@ Profile/
 **[[Home Screen]]** is the overall grid: ticker → topbar → profile card | (skill graph + tiles) → footer. Styles live in `css/home.css`.
 
 - **[[Ticker]]**: the scrolling dark strip of tech names at the very top. Testing items show in green. Words come from `data.js`.
+- **[[Intro Animation]]**: the "blueprint plotter" loading animation. A copper pen traces each block in turn, then it inks in.
 - **[[Profile Card]]**: the big white card with your name, title, intro, photo and graduation status. It's all text in `index.html`.
 - **[[Profile Popup]]**: phones only. A small photo beside your name opens a quick-summary card (photo, pitch, key facts, WhatsApp and CV buttons).
 - **[[Skill Graph]]**: the dark "Overall stats" radar chart with bars and a readout. It's built by `js/radar.js` from the scores in `data.js` and cycles through the axes on its own.

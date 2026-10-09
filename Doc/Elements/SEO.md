@@ -12,6 +12,8 @@ Everything here is invisible on the page. It tells Google, Bing and the AI assis
 | `og:*`, `profile:*`, `twitter:card` | The preview card when the link is shared on WhatsApp, LinkedIn, Slack and so on. |
 | JSON-LD `ProfilePage` → `Person` | A structured fact sheet: name, title, location, education, credentials, award, skills, languages, links. This is what search engines and AI assistants pull "facts about Dylan" from. |
 | Photo `alt` + filename | `img/dylan-gorrah.jpg` with a descriptive alt, so it can show up in image search for your name. |
+| Favicon `img/icons/icon-192.png` | The little icon beside the result in Google. Must be a real file (not a `data:` URL) sized in multiples of 48px. |
+| Phone avatar `alt` | Google indexes the **phone** layout, where the big photo is hidden, so the corner avatar carries the same descriptive alt. |
 | `sameAs` links | Ties this page to your GitHub and LinkedIn, so engines know they're the same person. |
 
 The views' text (About, Projects…) is already in the HTML even though it's hidden until clicked, so search engines can read all of it.

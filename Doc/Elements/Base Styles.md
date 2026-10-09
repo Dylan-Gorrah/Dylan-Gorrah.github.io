@@ -15,7 +15,7 @@
   | `--dark` | `#151513` | dark cards |
   | `--shadow`, `--soft` | | big / small card shadows |
   | `--r` | `28px` | main card corner radius |
-  | `--font`, `--mono` | Inter / monospace stack | body / label fonts |
+  | `--font`, `--mono` | Inter / monospace stack | body / label fonts. Inter is self-hosted: `fonts/inter-latin.woff2`, declared by the `@font-face` at the top of `base.css` and preloaded in `<head>` (no Google Fonts request). Latin letters only; other scripts fall back to the system font. |
 - **Reset**: box-sizing, zero margins, no list bullets, `[hidden]` always hides.
 - **Helpers**: `.mono` (monospace), `.eyebrow` (small uppercase label), `.ic` (18px line icon, see [[Icons]]).
 - **`.grain`**: a fixed, almost invisible noise texture over everything, which gives the "paper" feel.

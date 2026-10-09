@@ -37,10 +37,10 @@ Sideways on shorter screens (≤ 820px tall), a photo that big pushed the name o
 - **How:** it uses the separate CSS `scale` property so it doesn't fight the floating `bob` animation, which uses `transform`.
 - It only works once the real photo has loaded (`.photo.has`).
 
-The photo is **`img/dylan-gorrah.jpg`**: a 600×600 square crop centred on the face, about 70 KB. The file is named after you so it ranks in image search; use hyphens, not spaces.
+The photo is **`img/dylan-gorrah.jpg`**: a 600×600 square crop centred on the face, about 70 KB. Browsers actually load the WebP copies, which are about half the size: **`img/dylan-gorrah-600.webp`** (37 KB, computers, tablets and the summary card) and **`img/dylan-gorrah-240.webp`** (10 KB, phones: the corner avatar, plus the summary card). The JPG stays as the fallback and for Google / share previews. The file is named after you so it ranks in image search; use hyphens, not spaces.
 The `<img>` tag tries to load it: if it loads, the "PROFILE PHOTO" placeholder hides; if it's missing, the image removes itself and the grey silhouette stays.
 
-**To change it:** replace `img/dylan-gorrah.jpg` with another **square** image, keeping the same name. The circle crops the corners, so leave some space around your head. Keep it small (~600px), because it's only shown at up to 165px.
+**To change it:** replace `img/dylan-gorrah.jpg` with another **square** image, keeping the same name. The circle crops the corners, so leave some space around your head. Keep it small (~600px), because it's only shown at up to 165px. **Then regenerate the two WebP copies** (`img/dylan-gorrah-600.webp` and `-240.webp`, square, same crop): browsers load those first, so if you skip this the old photo keeps showing. Any converter works (e.g. squoosh.app, quality ~80), or ask Claude.
 
 ## Also update
 The `<head>` has a `<script type="application/ld+json">` block (info for search engines) and `<meta>` description tags that repeat your name, title, email and links. Keep them in sync if those change. See [[SEO]].

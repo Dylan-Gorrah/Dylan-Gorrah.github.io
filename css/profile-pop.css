@@ -33,6 +33,12 @@
 .me-pop.on .me-back{background:rgba(230,227,219,.6);
   -webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);
   transition:background .45s cubic-bezier(.2,.7,.2,1),-webkit-backdrop-filter .45s cubic-bezier(.2,.7,.2,1),backdrop-filter .45s cubic-bezier(.2,.7,.2,1)}
+/* Phones/tablets: animating a full-screen blur stutters on most of them, so they get a plain tint that
+   fades in instead (cheap). Computers keep the blur. */
+@media(any-hover:none){
+  .me-back,.me-pop.on .me-back{-webkit-backdrop-filter:none;backdrop-filter:none}
+  .me-pop.on .me-back{background:rgba(230,227,219,.88)}
+}
 /* The card is designed at phone size, then SCALED for bigger screens with --s: every size inside
    (width, photo, text, padding, buttons) is multiplied by it. Steps are chosen so the whole card
    always fits the screen height without scrolling (checked at phone, tablet and desktop sizes). */

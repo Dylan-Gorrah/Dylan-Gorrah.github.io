@@ -3,6 +3,8 @@
 /* ---------- Views ---------- */
 .view{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;background:var(--paper)}
 .vbar{flex:none;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;border-bottom:1px solid var(--line);background:rgba(230,227,219,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+/* Phones/tablets: no blur under the bar (re-blurring while scrolling stutters); nearly solid instead */
+@media(any-hover:none){.vbar{background:rgba(230,227,219,.97);-webkit-backdrop-filter:none;backdrop-filter:none}}
 .vt{text-align:center;line-height:1.1}
 .vt h2{font-size:.98rem;font-weight:650;letter-spacing:-.02em;margin-top:3px}
 .back{justify-self:start;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px 0 10px;background:var(--card);border:1px solid var(--line);border-radius:14px;font-weight:550;font-size:.85rem;transition:.22s ease}

@@ -4,6 +4,8 @@
 ## How it fits together
 These are plain `<script>` files, **not** ES modules. Browsers block modules on pages opened straight from a folder (`file://`), and the site has to keep working that way. To share things, every file reads from and writes to one global object, `window.Site`.
 
+**Exception:** `intro.js` ([[Intro Animation]]) loads earlier, straight after the home markup, so it can start before the rest download. It creates `window.Site` if needed and sets `Site.introLag`, which `radar.js` adds to its start delay.
+
 Load order (bottom of `index.html`). **Keep it this way:**
 1. `utils.js`: creates `Site` and adds `Site.$` (find one element), `Site.$$` (find all, as an array) and `Site.rm` (true if the visitor prefers reduced motion) and **`Site.motion`** (durations and easing of the grow/shrink animations, shared with [[Haptics]]).
 2. `data.js`: `Site.data`, all the lists. See [[Site Data]].

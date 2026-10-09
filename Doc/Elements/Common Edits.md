@@ -18,7 +18,7 @@ Copy one `<article class="card pc spot">…</article>` inside `#pcs` in the Proj
 Copy an `<article class="card frame spot">` in the Freelance view. See [[Freelance]].
 
 ### Add your photo
-Replace `img/dylan-gorrah.jpg` with a square image of the same name. See [[Profile Card]].
+Replace `img/dylan-gorrah.jpg` with a square image of the same name, and regenerate `img/dylan-gorrah-600.webp` and `img/dylan-gorrah-240.webp` from it. See [[Profile Card]].
 
 ### Update your CV
 Replace the PDF in `CV/`. If the file name changes, update the `href` in **two** places in `index.html`: the [[CV Button]] and the CV button in the [[Profile Popup]]. Search for `CV/`.

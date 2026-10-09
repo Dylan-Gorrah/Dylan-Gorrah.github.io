@@ -14,6 +14,8 @@
 @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes g1{0%,38%{opacity:1;transform:none}50%,88%{opacity:0;transform:translateY(-16px)}100%{opacity:1;transform:none}}
 @keyframes g2{0%,38%{opacity:0;transform:translateY(16px)}50%,88%{opacity:1;transform:none}100%{opacity:0;transform:translateY(16px)}}
+/* Loading animation: each block inks in once its outline is drawn (css/intro.css) */
+@keyframes inkIn{from{opacity:0;translate:0 8px}to{opacity:1;translate:none}}
 /* Intro expander text (css/home.css) */
 @keyframes leadIn{from{opacity:0;filter:blur(3px)}to{opacity:1;filter:none}}
 /* Profile popup avatar (css/profile-pop.css) */

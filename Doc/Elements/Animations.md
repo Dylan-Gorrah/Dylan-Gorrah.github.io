@@ -16,6 +16,7 @@
 | `sweep` | loading-bar shine on [[Freelance]] browser cards |
 | `grow` | pass-rate bar in [[Tutoring]] |
 | `g1` / `g2` | Hello ↔ Hallo swap in [[Languages]] |
+| `inkIn` | each home block fading in and lifting 8px once its outline is drawn, see [[Intro Animation]] |
 | `leadIn` | [[Profile Card]] intro text blurring in when "…" expands |
 | `avatarHint` | [[Profile Popup]] avatar's 3 "tap me" pulses (soft neutral glow) |
 

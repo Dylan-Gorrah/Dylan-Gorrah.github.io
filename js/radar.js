@@ -31,7 +31,7 @@
     setTimeout(function(){
       rows.forEach(function(r,i){ $('i',r).style.width=SK[i].v+'%'; });
       var t0=null; (function f(ts){ if(t0===null) t0=ts; var p=Math.min((ts-t0)/1200,1); draw(1-Math.pow(1-p,3)); if(p<1) requestAnimationFrame(f); })(performance.now());
-    },450);
+    },450+(S.introLag||0));   /* introLag: wait for the loading animation (js/intro.js) */
   }
 
   /* Readout box. Every description is also laid out invisibly in the same spot (.ghost), so the

@@ -5,6 +5,7 @@ Surprising things in the code worth knowing before you change it.
 
 ## Still true (by design)
 - **Browser Back always goes home from a view, not to the previous view.** Moving between views replaces the history entry on purpose, so visitors don't have to press Back eight times to leave. See [[View System]].
+- **Phones and tablets skip three costly effects** (`@media(any-hover:none)`): the paper grain overlay (`css/base.css`), the blur behind the summary popup (`css/profile-pop.css`, a plain tint fades in instead) and the blur under the view header bar (`css/views.css`). Animating or scrolling over blurs stutters on many Android phones. Computers keep all three.
 - **Some facts are repeated.** The CV link, contact details and headline numbers appear in more than one place (the views, the [[Profile Popup]], the SEO block). See [[Common Edits]] for where.
 - **CSS load order matters.** Later files win ties, so a rule can be silently overridden by a file loaded after it. See [[Responsive Layout]].
 - **iOS draws native switches even at `opacity: 0`.** Use `clip-path` to really hide one, and don't overlay switches on buttons. See [[Haptics]].
