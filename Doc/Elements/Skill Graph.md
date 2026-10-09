@@ -17,4 +17,12 @@ The script draws everything into the SVG from the data: 4 grid rings, the spokes
 ## Edit
 Change the `v` numbers (0–100), names `k` or tool text `d` in `skills` in `js/data.js`. Titles ("Skill graph.", the subtitle) are in `index.html`.
 
-On phones the bars are hidden and only the radar and readout show. See [[Responsive Layout]].
+## Phones: two swipeable slides
+On phones (≤ 680px) the bars and the radar share one spot as two slides, with the readout box fixed underneath both:
+- **Slide 1 = the bars** (shown first), **slide 2 = the radar**. Two dots at the top right of the card show which one is showing (the active one is a longer green pill), and tapping a dot switches.
+- **Swipe** sideways to switch. The slides follow your finger, and anything past the last slide resists. Vertical swipes still scroll the page.
+- **Auto-advance** every **4.5s** (`AUTO` in `js/radar.js`). After a swipe or dot tap it holds still for **9s** (`PAUSE`). It also pauses while the tab is hidden or a view is open, and never auto-advances for reduced-motion visitors.
+- Each slide replays its grow animation as it comes in (bars fill, radar grows from the centre).
+- **How:** `.side` is unwrapped (`display:contents`) so the bars and readout become cells of `.pg`. The bars and chart sit in the same cell and slide with `translate`; `.pg.s1` = radar showing. CSS is in `css/responsive.css`, and on short phones the bar rows are tightened so all 7 fit.
+
+Tablets and computers show both side by side as before. See [[Responsive Layout]].

@@ -9,7 +9,7 @@ Adapts the [[Home Screen]] to different screens. Home is meant to fit in **one s
 | ≤ 980px wide | Profile card stacks above the skill graph; graph subtitle hidden |
 | touch tablets, upright / sideways | Profile photo shown large (2×, no hover): ~240–255px upright, ~200–215px sideways (~280px tall tablets); sideways on screens ≤ 820px tall the intro collapses to "…" to make room (see [[Profile Card]]) |
 | 681–980px (tablet) | Page may scroll; tile subtitles and fact pills hidden; graph has a fixed height |
-| ≤ 680px (phone) | Big photo swapped for a small avatar beside the name ([[Profile Popup]]); tiles become icon + label only; radar bars, identity and facts hidden; name on one line |
+| ≤ 680px (phone) | Big photo swapped for a small avatar beside the name ([[Profile Popup]]); tiles become icon + label only; skill graph becomes two swipeable slides, bars then radar ([[Skill Graph]]); identity and facts hidden; name on one line |
 | ≤ 680px wide **and** ≤ 760px tall | Also hides the photo row and the graph title (the one-line intro stays; most phones in Safari fall in this range, e.g. iPhone 11 ≈ 715px) |
 | ≤ 430px | Footer links hidden |
 | > 980px but short (≤ 780 / ≤ 660px tall) | Hides facts/subtitles, then the intro |

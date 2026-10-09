@@ -37,7 +37,6 @@
   .tech-title{font-size:1.55rem}
   .pg{margin-bottom:8px;gap:6px;grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
   .tech-title,.tech-sub{display:none}
-  .stats2{display:none}
   .read{min-height:0;padding:9px 12px}
   .tiles{grid-template-columns:repeat(4,1fr);gap:6px}
   .tile{flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:74px;padding:8px 2px;border-radius:16px;gap:6px}
@@ -48,6 +47,26 @@
   .tb b{font-size:.64rem;letter-spacing:-.01em}
   .bottom{min-height:26px;font-size:.55rem}
   .bottom-links{gap:10px}
+}
+/* Slide dots for the phone skill graph (js/radar.js); only shown on phones, below */
+.pg-dots{display:none}
+.pg-dots button{width:22px;height:22px;padding:0;border:0;background:none;display:grid;place-items:center}
+.pg-dots button::before{content:"";width:6px;height:6px;border-radius:99px;background:#4a4a43;transition:width .3s cubic-bezier(.2,.7,.2,1),background .3s}
+.pg-dots button[aria-selected=true]::before{width:18px;background:var(--green)}
+/* Phones: the bars and the radar are two slides in the same spot (js/radar.js swipes / auto-advances).
+   .side is "unwrapped" so the bars and the readout become direct cells of .pg: row 1 = both slides
+   stacked (only one in view), row 2 = the readout. .s1 = radar showing. Docs: Doc/Elements/Skill Graph.md */
+@media(max-width:680px){
+  .pg{overflow:hidden;touch-action:pan-y}
+  .side{display:contents}
+  .stats2,.chart{grid-area:1/1;transition:translate .55s cubic-bezier(.2,.7,.2,1),opacity .55s ease}
+  .stats2{justify-content:space-evenly;padding:0 2px}
+  .read{grid-area:2/1}
+  .chart{translate:100vw 0;opacity:0}
+  .pg.s1 .stats2{translate:-100vw 0;opacity:0}
+  .pg.s1 .chart{translate:0 0;opacity:1}
+  .pg.drag :is(.stats2,.chart){transition:none;opacity:1}
+  .pg-dots{display:flex;gap:6px;align-self:center}
 }
 @media(max-width:680px){
   .identity,.facts-row{display:none}
@@ -64,6 +83,9 @@
   .tech-title,.profile-top{display:none}   /* the intro stays: on phones it is one short line + "…" */
   .read small{display:none}
   .read{padding:7px 12px}
+  .stats2{justify-content:space-between;padding:2px 2px 4px}   /* all 7 bars fit the short card */
+  .srow{padding:0;font-size:9.5px;line-height:1.15}
+  .srow .sb{height:5px}
   .tile{min-height:64px}
   .left{padding:14px}
 }
