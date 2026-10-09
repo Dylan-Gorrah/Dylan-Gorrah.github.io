@@ -3,8 +3,8 @@
 
 A "blueprint plotter" loading animation on the home screen, about 1.5 seconds long:
 1. The page starts as drafting paper: a faint dot grid with the blocks hidden.
-2. A copper pen tip (a glowing dot) traces each block's outline in sequence: ticker → top bar (a line under it) → profile card → skill graph → the 8 tiles one after another → footer (a line over it). Outlines follow each block's real rounded corners.
-3. Above the two big cards a small label **measures** the card as the pen draws (`543 × 728`, counting up from 0 × 0).
+2. A pencil-grey pen tip (a dot with a soft halo) traces each block's outline in sequence: ticker → top bar (a line under it) → profile card → skill graph → the 8 tiles one after another → footer (a line over it). Outlines follow each block's real rounded corners.
+3. On the top edge of the two big cards, a small size tag (paper-backed, so it breaks the line like a dimension on a technical drawing) **measures** the card as the pen draws (`543 × 728`, counting up from 0 × 0).
 4. When an outline is ~90% drawn, that block **inks in** (fades in while lifting 8px) and the outline fades away. Everything inside the block (name slide-up, tile icons drawing, ticker, radar growth) starts only then.
 5. The dot grid fades out.
 
@@ -13,6 +13,7 @@ About 1.5s on a fast device (shorter on slow ones, see below).
 ## How it works
 - The `<head>` script adds `html.intro` **before the first paint**, so nothing flashes. `css/intro.css` keeps the blocks hidden and pauses every animation inside them.
 - `js/intro.js` measures each block, draws the outlines in a fixed full-screen SVG layer, and adds `.inked` to each block on cue. At the end it removes the layer and adds `html.intro-done`.
+- **Alignment:** waiting blocks sit 8px low (the start of their lift), so the script subtracts that offset when measuring. Outlines are drawn where each block will *end up*. If you change the lift in `inkIn`, nothing else needs changing.
 - `Site.introLag` (520ms, less when sped up) delays the [[Skill Graph]] growth so it happens after its card has inked in.
 
 ## Built to stay snappy on slow phones
@@ -29,7 +30,8 @@ About 1.5s on a fast device (shorter on slow ones, see below).
 
 ## Edit
 - **Order and timing:** the `plan` list at the top of `js/intro.js`: `[selector, 'box' | 'under' | 'over', start ms, draw ms, size label?]`. Tiles are spaced 60ms apart (`i*60`).
-- **Colour / thickness / glow:** `.ink-layer path` and `.ink-pen` in `css/intro.css`.
+- **Colour:** `--pencil` in `css/base.css` (graphite grey, separate from the `--copper` accent).
+- **Thickness / glow:** `.ink-layer path` and `.ink-pen .halo` in `css/intro.css`.
 - **Grid:** `html.intro body::before` in `css/intro.css`.
 - **Turn it off:** delete the `<head>` script (the rest then does nothing).
 - **Adding a new block to the home screen:** add its selector to the `:is(...)` lists in `css/intro.css` **and** to `plan`, or it won't take part (it will just show normally).

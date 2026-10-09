@@ -69,7 +69,7 @@ Profile/
 **[[Home Screen]]** is the overall grid: ticker → topbar → profile card | (skill graph + tiles) → footer. Styles live in `css/home.css`.
 
 - **[[Ticker]]**: the scrolling dark strip of tech names at the very top. Testing items show in green. Words come from `data.js`.
-- **[[Intro Animation]]**: the "blueprint plotter" loading animation. A copper pen traces each block in turn, then it inks in.
+- **[[Intro Animation]]**: the "blueprint plotter" loading animation. A pencil-grey pen traces each block in turn, then it inks in.
 - **[[Profile Card]]**: the big white card with your name, title, intro, photo and graduation status. It's all text in `index.html`.
 - **[[Profile Popup]]**: phones only. A small photo beside your name opens a quick-summary card (photo, pitch, key facts, WhatsApp and CV buttons).
 - **[[Skill Graph]]**: the dark "Overall stats" radar chart with bars and a readout. It's built by `js/radar.js` from the scores in `data.js` and cycles through the axes on its own.
